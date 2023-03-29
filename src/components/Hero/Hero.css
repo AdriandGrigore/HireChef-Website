@@ -1,0 +1,87 @@
+
+.hero-container{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}   
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-text-container{
+    position: absolute;
+    top:40%;
+    left:50%;
+    transform: translate(-50%);
+    width: 100%;
+    background-color: rgba(243, 242, 242, 0.486);
+}
+
+.hero-text-container h1{
+    font-size: 4rem;
+    font-weight:900;
+    padding: 2.5rem;
+    letter-spacing: 0.5rem;
+    color:rgb(0, 0, 0);
+}
+
+.hero-text-container h2{
+    font-size: 2rem;
+    padding-bottom: 2.6rem;
+}
+
+.hero-text-container a{
+    padding: 1rem 2rem; 
+    background-color: rgb(240, 170, 79);
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 1.25rem;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+
+.hero-text-container a:hover{
+    background-color: rgb(243, 197, 138);
+}
+
+@media screen and (max-width:1024px){
+    .hero-text-container h1{
+        font-size:3.3rem;
+    }
+
+    .hero-text-container h2{
+        font-size:1.5rem;
+    }
+    
+    .hero-text-container a{
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+@media screen and (max-width:640px){
+    .hero-text-container{
+        background-color: rgba(243, 242, 242, 0.705)
+    }
+    
+    .hero-text-container h1{
+        font-size:2rem;
+        padding: 1.5rem;
+        letter-spacing: 0rem;
+    }
+
+    .hero-text-container h2{
+        font-size:1.5rem;
+        padding-bottom:2rem;
+    }
+    
+    .hero-text-container a{
+        padding: 0.85rem 2rem;
+        font-size: 1rem;
+    }
+}
+

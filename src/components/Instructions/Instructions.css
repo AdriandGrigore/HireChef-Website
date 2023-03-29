@@ -1,0 +1,128 @@
+.instructions-section{
+    background-color: rgba(180, 176, 176, 0.192);
+}
+
+.instructions-section-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    width: 90%;
+    height: 100vh;
+    padding: 0 2rem;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
+    background-color: rgb(248, 248, 248);
+}
+
+
+.instructions-section-grid-container {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem;
+    height: 85%;
+    width: 80%;
+    background-color: rgb(248, 248, 248);
+}
+
+.card{
+    border-radius: 10px;
+    background-color: rgba(255, 245, 225, 0.212);
+    box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.3);
+}
+
+.card-icon{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    height: 30%;
+    padding-bottom: 3rem;
+    font-size: 3.5rem;
+    color: rgb(231, 143, 28);
+}
+
+.card h3{
+    white-space: nowrap;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    color:rgb(56, 66, 71);
+}
+
+.card p{
+    padding: 1rem;
+    font-size: 1.15rem;
+    line-height: 1.5rem;
+    color: rgb(56, 66, 71);
+}
+
+@media screen and (min-width:2000px){
+    .instructions-section-grid-container{
+        max-height: 1200px;
+    }    
+}
+
+@media screen and (max-width:1475px) {
+    .instructions-section-grid-container{
+        width: 95%;
+    }
+}
+
+@media screen and (max-width:1260px) {
+    .instructions-section-grid-container{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        width: 85%;
+        height: 90%;
+    }
+
+    .instructions-section-container{
+        width: 100%;
+        height: fit-content;
+        padding: 1rem 0;
+        box-shadow: none;
+    }
+
+    .card{
+        padding: 1rem;
+     }
+     
+    .card-icon{
+        padding-bottom: 1rem;
+    }
+
+    .card h3{
+        white-space: normal;
+    }
+}
+
+
+@media screen and (max-width:800px) {
+    .instructions-section-container{
+        padding: 0;
+    }
+
+    .instructions-section-grid-container{
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap:0rem;
+    }
+    
+    .card{
+        border-radius: 0;
+    }
+}
+
+
+@media screen and (max-width:640px) {
+    .card-icon{
+        font-size: 3rem;
+    }
+    
+    .card{
+        padding: 1rem 0;
+    }
+    .card p{
+        font-size: 1rem;
+    }
+}

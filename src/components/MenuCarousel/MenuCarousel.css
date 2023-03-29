@@ -1,0 +1,154 @@
+.menu-section{
+    background-image: url(../../assets/menuBackground.jpg);
+    background-size: cover;
+}
+
+.menu-description{
+    background-color: rgba(230, 227, 227, 0.733);
+    padding: 5.5rem 0rem 1.5rem 0rem;
+    color: rgb(44, 2, 2);
+}
+
+.menu-description h1{
+    padding:0.5rem;
+}
+
+.menu-description p{    
+    width: 75%;
+    margin: auto;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+}
+
+.menu-carousel{
+    min-height:90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-carousel button{
+    height: 60px;
+    font-size: 3rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: red;
+}
+
+.menu-carousel button:hover{
+    color: rgb(255, 73, 60);
+}
+
+.carousel-image{
+    width: 550px;
+    height: 800px;
+    margin:1rem;
+    object-fit: cover;
+    animation: fade 1.5s;
+}
+
+.carousel-image.disabled{
+    display: none;
+}
+
+.download-link{
+   display: none;   
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0.35;   
+        transform: translate(-2%);
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+@media screen and (max-width:1024px) {
+    .menu-description p{
+        width: 95%;
+    }
+}
+
+@media screen and (max-width:715px) {
+    .menu-carousel button{
+        font-size: 2.5rem;
+    }
+
+    .carousel-image{
+        margin: 1rem 0;
+    }
+
+    @keyframes fade{
+        0%{
+            opacity: 0.35;   
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+}
+ 
+@media screen and (max-width:640px) {
+    .carousel-image{
+        width: 80%;
+        height: auto;
+    }
+
+    .menu-carousel{
+        min-height: fit-content;
+    }
+
+    .menu-description p{
+        font-size: 1rem;
+    }
+
+    .menu-description h1{
+        font-size: 1.7rem;
+    }
+}
+
+@media screen and (max-width:450px){
+    .menu-carousel{
+        display: none;
+    }
+
+    .menu-description p{
+        width: 90%;
+        text-align: justify;
+    }
+
+    .download-link{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40vh;
+    }
+
+    .download-link a{
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 1.2rem 2rem;
+        background-color: rgb(240, 170, 79);
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        border-radius: 20px;
+    }
+}
+
+@media screen and (max-width:335px) {
+    .menu-description h1{
+        font-size: 1.5rem;
+    }
+
+    .menu-description p{
+        font-size: 1rem;
+    }
+
+    .download-link a{
+        font-size: 1.1rem;
+    }
+} 
