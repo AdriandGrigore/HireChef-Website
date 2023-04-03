@@ -27,7 +27,7 @@ function Navbar() {
   return (
     <nav className={isVisible? "navbar" : "navbar navbar-hidden"}>
       <div className="navbar-logo-container">
-        <Link to="#"><img src={logo} alt="logo"/></Link>
+        <Link to="/#"><img src={logo} alt="logo"/></Link>
       </div>
       <div onClick={()=>setClicked(!clicked)} className="burger-menu">
        {clicked?<AiOutlineClose/>:<RxHamburgerMenu/>}
