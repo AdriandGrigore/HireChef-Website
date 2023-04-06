@@ -119,7 +119,7 @@ function Form() {
 
   return (
     <div className='booking-section'>
-      <form onSubmit={submitForm}>
+      <form onSubmit={submitForm} autoComplete='off'>
         <div>
           <label htmlFor="firstName">First Name: <sup>*</sup></label>
           <input 
