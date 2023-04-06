@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import "../Navbar/Navbar.css"
 import logo from "../../assets/logo.png"
-import {CiHome,CiCircleInfo,CiMemoPad,CiBookmark} from "react-icons/ci"
+import {CiHome,CiCircleInfo,CiBookmark} from "react-icons/ci"
 import {RxHamburgerMenu} from "react-icons/rx"
-import {AiOutlineClose} from "react-icons/ai"
+import {AiOutlineClose,AiOutlineLogin} from "react-icons/ai"
 import {MdOutlineRestaurantMenu} from "react-icons/md"
 import { NavHashLink as Link } from 'react-router-hash-link'
 
@@ -46,7 +46,7 @@ function Navbar() {
           <Link onClick={()=>setClicked(false)} to="/booking#"><CiBookmark/>Book meeting</Link>
         </li>
         <li>
-          <Link onClick={()=>setClicked(false)} to="#footer"><CiMemoPad/> Contact us</Link>
+          <Link onClick={()=>setClicked(false)} to="#footer"><AiOutlineLogin/> Log in </Link>
         </li>
       </ul>
     </nav>
