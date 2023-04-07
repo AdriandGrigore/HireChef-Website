@@ -1,4 +1,6 @@
-import React, { useReducer} from 'react'
+import React from 'react'
+import {useSelector, useDispatch }from "react-redux"
+import { inputChange, inputStatus, formValid, formNotValid, resetForm} from '../../features/formSlice'
 import "../Form/Form.css"
 
 const getCurrentDate=()=>{
@@ -11,110 +13,48 @@ const getCurrentDate=()=>{
   )
 }
 
-const ACTION={
-  INPUT_CHANGE:"INPUT_CHANGE",
-  INPUT_STATUS:"INPUT_STATUS",
-  FORM_VALID:"FORM_VALID",
-  FORM_NOT_VALID:"FORM_NOT_VALID",
-  RESET_FORM:"RESET_FORM",
-}
-
-const initialState = {
-  firstName: {
-    value: "",
-    wasClicked: false,
-    error: "First name must be 3 characters long",
-  },
-  lastName: {
-    value: "",
-    wasClicked: false,
-    error: "Last name must be 3 characters long",
-  },
-  email: {
-    value: "",
-    wasClicked: false,
-    error:"Enter a valid e-mail address",
-  },
-  phoneNumber: {
-    value: "",
-    wasClicked: false,
-    error:"Enter a valid phone number"
-  },
-  menu: {
-    value: "none",
-    wasClicked: false,
-    error:"Please select a menu",
-  },
-  chef: {
-    value: "none",
-    wasClicked: false,
-    error:"Please select a chef"
-  },
-  date: {
-    value: "",
-    wasClicked: false,
-    error:"Select a date"
-  },
-  isDisabled: true
-}
-
-const reducer=(state, {type,payload})=>{
-  switch(type){
-    case ACTION.INPUT_CHANGE:
-      return {...state, [payload.name]:{...state[payload.name],value:payload.value}}
-    case ACTION.INPUT_STATUS:
-      return {...state, [payload.name]:{...state[payload.name], wasClicked:true}}
-    case ACTION.FORM_NOT_VALID:
-      return {...state, isDisabled:true}
-    case ACTION.FORM_VALID:
-      return {...state, isDisabled:false}
-    case ACTION.RESET_FORM:
-      return initialState
-    default:
-      return state
-  }
-}
-
 function Form() {
-  const [state, dispatch] = useReducer(reducer, initialState)
 
-  const errorCondition ={
-    firstName: state.firstName.value.length < 3 && state.firstName.wasClicked,
-    lastName: state.lastName.value.length < 3 && state.lastName.wasClicked,
-    email: state.email.value.length < 3 && state.email.wasClicked,
-    phoneNumber: state.phoneNumber.value.length < 10 && state.phoneNumber.wasClicked,
-    menu: state.menu.value === "none" && state.menu.wasClicked,
-    chef: state.chef.value === "none" && state.chef.wasClicked,
-    date: state.date.value === "" && state.date.wasClicked,
+  const {firstName, lastName, email, phoneNumber, menu, chef, date, submitBtnIsDisabled}= useSelector((state)=>state.form)
+  const dispatch = useDispatch()
+
+  const errCondition ={
+    firstName: firstName.value.length < 3 && firstName.wasClicked,
+    lastName: lastName.value.length < 3 && lastName.wasClicked,
+    email: email.value.length < 3 && email.wasClicked,
+    phoneNumber: phoneNumber.value.length < 10 && phoneNumber.wasClicked,
+    menu: menu.value === "none" && menu.wasClicked,
+    chef: chef.value === "none" && chef.wasClicked,
+    date: date.value === "" && date.wasClicked,
   }
   
   const formValidationChecker=()=>{
-    const {firstName, lastName, email, phoneNumber,menu,chef,date}=errorCondition
-    const allInputsClicked = state.firstName.wasClicked && state.lastName.wasClicked && state.email.wasClicked && state.phoneNumber.wasClicked && state.menu.wasClicked && state.chef.wasClicked && state.date.wasClicked
-
-    if(firstName || lastName || email || phoneNumber || menu || chef || date){
-      dispatch({type:ACTION.FORM_NOT_VALID})
+    const allInputsClicked = firstName.wasClicked && lastName.wasClicked && email.wasClicked && phoneNumber.wasClicked && menu.wasClicked && chef.wasClicked && date.wasClicked
+    const errorIsShowing = errCondition.firstName || errCondition.lastName || errCondition.email || errCondition.phoneNumber || errCondition.menu || errCondition.chef || errCondition.date
+    
+    if(errorIsShowing){
+      dispatch(formNotValid())
     }
     else if(allInputsClicked){
-      dispatch({type:ACTION.FORM_VALID})
+      dispatch(formValid())
     }
     else{
-      dispatch({type:ACTION.FORM_NOT_VALID})
+      dispatch(formNotValid())
     }
   }
 
   const handleChange = (e) => {
-    dispatch({ type: ACTION.INPUT_CHANGE, payload: { value: e.target.value, name: e.target.id } })
+    dispatch(inputChange({ value: e.target.value, name: e.target.id }))
   }
   
   const handleStatus = (e) => {
-    dispatch({ type: ACTION.INPUT_STATUS, payload: { name: e.target.id } })
+    dispatch(inputStatus({name:e.target.id}))
   }
 
   const submitForm = (e) => {
     e.preventDefault()
     alert("Form submited")
-    dispatch({type:ACTION.RESET_FORM})
+    dispatch(resetForm())
   }
 
   return (
@@ -126,39 +66,39 @@ function Form() {
             type="text" 
             id="firstName"
             placeholder='First Name'
-            value={state.firstName.value}
+            value={firstName.value}
             onChange={handleChange}
             onFocus={handleStatus}
             onBlur={formValidationChecker}
           />
         </div>
-        {errorCondition.firstName ? <small>{state.firstName.error}</small> : null}
+        {errCondition.firstName ? <small>{firstName.errorMsg}</small> : null}
         <div>
           <label htmlFor='lastName'>Last Name: <sup>*</sup></label>
           <input 
             type="text" 
             id="lastName" 
             placeholder='Last Name'
-            value={state.lastName.value}
+            value={lastName.value}
             onChange={handleChange}
             onFocus={handleStatus}
             onBlur={formValidationChecker}
           />
         </div>
-        {errorCondition.lastName ?<small>{state.lastName.error}</small>: null}
+        {errCondition.lastName ?<small>{lastName.errorMsg}</small>: null}
         <div>
           <label htmlFor='email'>E-mail address: <sup>*</sup></label>
           <input 
             type="email" 
             id="email" 
             placeholder='E-mail address'
-            value={state.email.value}
+            value={email.value}
             onChange={handleChange}
             onFocus={handleStatus}
             onBlur={formValidationChecker}
           />
         </div>
-        {errorCondition.email ?<small>{state.email.error}</small> : null}
+        {errCondition.email ?<small>{email.errorMsg}</small> : null}
         <div>
           <label htmlFor='phoneNumber'>Phone Number: <sup>*</sup></label>
           <input 
@@ -166,16 +106,16 @@ function Form() {
             type="tel" 
             pattern="[0-9]{10}"
             placeholder='Phone Number'
-            value={state.phoneNumber.value}
+            value={phoneNumber.value}
             onChange={handleChange}
             onFocus={handleStatus}
             onBlur={formValidationChecker}
           />
         </div>
-        {errorCondition.phoneNumber ?<small>{state.phoneNumber.error}</small> : null}
+        {errCondition.phoneNumber ?<small>{phoneNumber.errorMsg}</small> : null}
         <div>
           <label htmlFor='menu'>Type of menu: <sup>*</sup></label>
-          <select id="menu" value={state.menu.value} onChange={handleChange} onFocus={handleStatus} onBlur={formValidationChecker}>
+          <select id="menu" value={menu.value} onChange={handleChange} onFocus={handleStatus} onBlur={formValidationChecker} >
             <option value="none">Select menu</option>
             <option value="my-own-menu">Got my own menu</option>
             <option value="No.1">No.1</option>
@@ -183,31 +123,31 @@ function Form() {
             <option value="No.3">No.3</option>
           </select> 
         </div>
-        {errorCondition.menu ? <small>{state.menu.error}</small> : null}
+        {errCondition.menu ? <small>{menu.errorMsg}</small> : null}
         <div>
           <label htmlFor="chef">Choose a chef: <sup>*</sup></label>
-          <select id="chef" value={state.chef.value} onChange={handleChange} onFocus={handleStatus} onBlur={formValidationChecker}>
+          <select id="chef" value={chef.value} onChange={handleChange} onFocus={handleStatus} onBlur={formValidationChecker} >
             <option value="none">Select chef</option>
             <option value="Lisa Quinn">Lisa Quinn</option>
             <option value="Ben Malone">Ben Malone</option>
             <option value="Liam Pierce">Liam Pierce</option>
           </select>    
         </div>
-        {errorCondition.chef ? <small>{state.chef.error}</small> : null}
+        {errCondition.chef ? <small>{chef.errorMsg}</small> : null}
         <div>
           <label htmlFor='date'>Choose a date: <sup>*</sup></label>
           <input 
             type="date" 
             id="date"
             min={getCurrentDate()}
-            value={state.date.value}
+            value={date.value}
             onChange={handleChange}
-            onFocus={handleStatus}
+            onFocus={handleStatus} 
             onBlur={formValidationChecker}
           />
         </div>
-        {errorCondition.date ? <small>{state.date.error}</small> : null}
-        <button type='submit' className={state.isDisabled?"submit-button disabled": "submit-button"} disabled={state.isDisabled}>SUBMIT</button>
+        {errCondition.date ? <small>{date.errorMsg}</small> : null}
+        <button type='submit' className={ submitBtnIsDisabled ? "submit-button disabled": "submit-button" } disabled={submitBtnIsDisabled}>SUBMIT</button>
       </form>
     </div>
   )
