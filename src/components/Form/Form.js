@@ -44,11 +44,11 @@ function Form() {
   }
 
   const handleChange = (e) => {
-    dispatch(inputChange({ value: e.target.value, name: e.target.id }))
+    dispatch(inputChange({ value: e.target.value, inputName: e.target.id }))
   }
   
   const handleStatus = (e) => {
-    dispatch(inputStatus({name:e.target.id}))
+    dispatch(inputStatus({inputName:e.target.id}))
   }
 
   const submitForm = (e) => {

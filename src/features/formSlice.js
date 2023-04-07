@@ -44,10 +44,10 @@ const formSlice= createSlice({
     initialState,
     reducers:{
         inputChange:(state,{payload})=>{
-            state[payload.name].value= payload.value
+            state[payload.inputName].value= payload.value
         },
         inputStatus:(state,{payload})=>{
-            state[payload.name].wasClicked= true
+            state[payload.inputName].wasClicked= true
         },
         formValid:(state)=>{
             state.submitBtnIsDisabled= false
