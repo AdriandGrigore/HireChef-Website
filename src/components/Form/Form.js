@@ -72,7 +72,7 @@ function Form() {
             onBlur={formValidationChecker}
           />
         </div>
-        {errCondition.firstName ? <small>{firstName.errorMsg}</small> : null}
+        {errCondition.firstName ? <small>{firstName.errorMsg} </small> : null}
         <div>
           <label htmlFor='lastName'>Last Name: <sup>*</sup></label>
           <input 
@@ -85,7 +85,7 @@ function Form() {
             onBlur={formValidationChecker}
           />
         </div>
-        {errCondition.lastName ?<small>{lastName.errorMsg}</small>: null}
+        {errCondition.lastName ? <small>{lastName.errorMsg}</small> : null}
         <div>
           <label htmlFor='email'>E-mail address: <sup>*</sup></label>
           <input 
@@ -98,7 +98,7 @@ function Form() {
             onBlur={formValidationChecker}
           />
         </div>
-        {errCondition.email ?<small>{email.errorMsg}</small> : null}
+        {errCondition.email ? <small>{email.errorMsg}</small> : null}
         <div>
           <label htmlFor='phoneNumber'>Phone Number: <sup>*</sup></label>
           <input 
@@ -112,7 +112,7 @@ function Form() {
             onBlur={formValidationChecker}
           />
         </div>
-        {errCondition.phoneNumber ?<small>{phoneNumber.errorMsg}</small> : null}
+        {errCondition.phoneNumber ? <small>{phoneNumber.errorMsg}</small> : null}
         <div>
           <label htmlFor='menu'>Type of menu: <sup>*</sup></label>
           <select id="menu" value={menu.value} onChange={handleChange} onFocus={handleStatus} onBlur={formValidationChecker} >
