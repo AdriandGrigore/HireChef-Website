@@ -1,6 +1,7 @@
 import React from 'react'
 import {useSelector, useDispatch }from "react-redux"
 import { inputChange, inputStatus, formValid, formNotValid, resetForm} from '../../features/formSlice'
+import { openModal } from '../../features/modalSlice'
 import "../Form/Form.css"
 
 const getCurrentDate=()=>{
@@ -53,8 +54,8 @@ function Form() {
 
   const submitForm = (e) => {
     e.preventDefault()
-    alert("Form submited")
     dispatch(resetForm())
+    dispatch(openModal())
   }
 
   return (
