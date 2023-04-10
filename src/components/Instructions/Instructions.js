@@ -9,6 +9,15 @@ function Instructions() {
             <div className='instructions-section-grid-container'>
                 <div className='card'>
                     <div className='card-icon'>
+                        <MdOutlineRestaurantMenu />
+                    </div>
+                    <h3>Choose a menu</h3>
+                    <p>
+                        Select a preset menu from our page or talk with the chefs about your own!
+                    </p>
+                </div>
+                <div className='card'>
+                    <div className='card-icon'>
                         <MdDashboardCustomize />
                     </div>
                     <h3>Personalize your request</h3>
@@ -34,15 +43,6 @@ function Instructions() {
                     <p>
                         Dont be shy to exchange some messages with your chefs until your
                         perfect menu is ready!
-                    </p>
-                </div>
-                <div className='card'>
-                    <div className='card-icon'>
-                        <MdOutlineRestaurantMenu />
-                    </div>
-                    <h3>Choose Menu</h3>
-                    <p>
-                        Select a preset menu from our page or talk with the chefs about your own!
                     </p>
                 </div>
                 <div className='card'>
