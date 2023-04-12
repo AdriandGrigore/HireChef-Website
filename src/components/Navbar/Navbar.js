@@ -46,7 +46,7 @@ function Navbar() {
           <Link onClick={()=>setClicked(false)} to="/booking#"><CiBookmark/>Book meeting</Link>
         </li>
         <li>
-          <Link onClick={()=>setClicked(false)} to="#footer"><AiOutlineLogin/> Log in </Link>
+          <Link onClick={()=>setClicked(false)} to="/login#"><AiOutlineLogin/> Log in </Link> 
         </li>
       </ul>
     </nav>
