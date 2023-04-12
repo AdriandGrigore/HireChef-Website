@@ -1,7 +1,7 @@
 import React from 'react'
-import "../LoginForm/LoginForm.css"
 import loginImg from "../../assets/loginImg.jpg"
 import { NavHashLink as Link } from 'react-router-hash-link'
+import "../LoginForm/LoginForm.css"
 
 function LoginForm() {
   return (
@@ -22,7 +22,7 @@ function LoginForm() {
             <button type='submit'>Log in</button>
           </form>
           <div className='register-msg'>
-            <small>Don't have an account? <Link>Register</Link></small>
+            <small>Don't have an account? <Link to="/signup">Sign up</Link></small>
           </div>
         </div>
       </div>
