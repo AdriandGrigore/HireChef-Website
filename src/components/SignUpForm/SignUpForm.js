@@ -19,8 +19,8 @@ function SignUpForm() {
           <input type='email' id='signupEmail'/>
           <label htmlFor='signupPassword'>Password</label>
           <input type='password' id="signupPassword"/>
-          <label>Confirm Password</label>
-          <input type='password' id="signupConfirmPassowrd"/>
+          <label htmlFor='signupConfirmPassword'>Confirm Password</label>
+          <input type='password' id="signupConfirmPassword"/>
           <button type='submit'>Sign up</button>
         </form>
         <div className='login-msg'>
