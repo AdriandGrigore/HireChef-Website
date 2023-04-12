@@ -1,0 +1,141 @@
+.signup-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(228, 226, 226, 0.726);
+}
+
+.signup-card{
+    display: flex;
+    align-items: center;
+    width: 900px;
+    height: 70%;
+    margin: 0rem 1rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
+    animation: 0.25s signup-card ease-out;
+}
+
+.signup-img{
+    height: 100%;
+    width: 45%;
+    border-right: 3px solid rgba(0, 113, 161, 0.151);
+}
+
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    height: 100%;
+    animation: 0.4s signup-form linear;
+}
+
+.signup-text{
+    margin-top: auto;
+    color:rgb(221, 95, 44);
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+}
+
+
+.signup-form form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.signup-form label{
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.signup-form input{
+    width: 245px;
+    padding: 0.3rem 0.5rem ;
+    margin: 0.2rem auto 0 auto;
+    font-size: 1.1rem;
+    text-align: center;
+    border-radius: 15px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+.signup-form button {
+    width: 7rem;
+    margin: 2rem auto 0;
+    margin-top: 2rem;
+    padding: 0.35rem 1rem;
+    font-size: 1.15rem;
+    border: none;
+    color: white;
+    background-color: rgb(2, 99, 141);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.signup-form button:hover{
+    background-color: rgb(1, 137, 196);
+}
+
+.login-msg{
+    margin-top: auto;
+    margin-bottom: 2rem;
+}
+
+.login-msg small{
+    font-size: 1rem;
+}
+
+.login-msg a:visited{
+    color: blue;
+}
+
+
+@keyframes signup-card{
+    0%{
+        height: 0%;
+        width: 300px;
+    }
+    100%{
+        height: 70%;
+        width: 900px;
+    }
+}
+
+@keyframes signup-form{
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width:640px){
+    .signup-img{
+        display: none;
+    }
+}
+
+
+@media screen and (max-width:435px) {
+    .signup-text{
+        font-size: 1.7rem;
+    }
+    .signup-card{
+        height: 100%;
+        margin: auto 0;
+        background-color: rgba(248, 248, 248, 0.425);
+        animation: none;
+    }
+}
+
+@media screen and (max-width:280px) {
+   .signup-form input{
+        width:90%;
+   }
+}
