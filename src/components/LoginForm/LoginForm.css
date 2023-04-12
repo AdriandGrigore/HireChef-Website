@@ -21,6 +21,7 @@
     height: 100%;
     width: 45%;
     border-right: 3px solid rgba(0, 113, 161, 0.151);
+    animation: 0.3s fade linear;
 }
 
 .login-form{
@@ -28,7 +29,7 @@
     flex-direction: column;
     margin:auto;
     height: 100%;
-    animation: 0.4s login-form linear;
+    animation: 0.4s fade linear;
 }
 
 .welcome-text{
@@ -103,7 +104,7 @@
     }
 }
 
-@keyframes login-form{
+@keyframes fade{
     0%{
         opacity: 0;
     }
