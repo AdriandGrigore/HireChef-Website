@@ -45,7 +45,7 @@
     height: 800px;
     margin:1rem;
     object-fit: cover;
-    animation: fade 1.5s;
+    animation: menu-fade 1s;
 }
 
 .carousel-image.disabled{
@@ -56,7 +56,7 @@
    display: none;   
 }
 
-@keyframes fade{
+@keyframes menu-fade{
     0%{
         opacity: 0.35;   
         transform: translate(-2%);
@@ -82,7 +82,7 @@
         margin: 1rem 0;
     }
 
-    @keyframes fade{
+    @keyframes menu-fade{
         0%{
             opacity: 0.35;   
         }
