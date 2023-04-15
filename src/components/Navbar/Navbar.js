@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import logo from "../../assets/logo.png"
-import {CiHome,CiCircleInfo,CiBookmark} from "react-icons/ci"
+import {CiHome,CiCircleInfo,CiBookmark,CiUser} from "react-icons/ci"
 import {RxHamburgerMenu} from "react-icons/rx"
 import {AiOutlineClose,AiOutlineLogin} from "react-icons/ai"
 import {MdOutlineRestaurantMenu} from "react-icons/md"
@@ -48,7 +48,12 @@ function Navbar() {
           <Link onClick={()=>setClicked(false)} to={currentUser ? "/booking#" : "/login#"}><CiBookmark/>Book meeting</Link>
         </li>
         <li>
-          <Link onClick={()=>setClicked(false)} to="/login#"><AiOutlineLogin/> Log in </Link> 
+          {
+            currentUser ?
+            <Link onClick={()=>setClicked(false)} to="/user#"><CiUser/> Profile </Link> 
+            :
+            <Link onClick={()=>setClicked(false)} to="/login#"><AiOutlineLogin/> Log in </Link> 
+          }
         </li>
       </ul>
     </nav>
