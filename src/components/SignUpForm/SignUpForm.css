@@ -34,9 +34,10 @@
 
 .signup-text{
     margin-top: auto;
-    color:rgb(221, 95, 44);
     font-size: 2rem;
     letter-spacing: 1.5px;
+    color:rgb(92, 141, 13);
+    text-shadow: 0px 1px 2px rgba(0,0,0,0.41)
 }
 
 
