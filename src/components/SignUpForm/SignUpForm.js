@@ -3,6 +3,7 @@ import { NavHashLink as Link } from 'react-router-hash-link'
 import signupImg from "../../assets/signupImg.jpg"
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../util/firebase-config'
+import { useNavigate } from 'react-router-dom'
 import "../SignUpForm/SignUpForm.css"
 
 function SignUpForm() {
@@ -10,7 +11,8 @@ function SignUpForm() {
   const [signupPassword,setSignUpPassword]  = useState("")
   const [signupConfirmPassword,setSignUpConfirmPassword]  = useState("")
   const [signupError,setSignUpError]  = useState("")
-  
+  const navigate = useNavigate()
+
   const signUp= async (e) =>{
     e.preventDefault()
     
@@ -21,6 +23,7 @@ function SignUpForm() {
     try{
       setSignUpError("")
       await createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+      navigate("/user#")
     }
     catch(err){
       setSignUpError(err.message)

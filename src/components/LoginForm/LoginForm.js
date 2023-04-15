@@ -3,12 +3,14 @@ import loginImg from "../../assets/loginImg.jpg"
 import { NavHashLink as Link } from 'react-router-hash-link'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../util/firebase-config'
+import { useNavigate } from 'react-router-dom'
 import "../LoginForm/LoginForm.css"
 
 function LoginForm() {
   const [loginEmail, setLoginEmail] = useState("")
   const [loginPassword, setLoginPassword] = useState("")
   const [loginError, setLoginError] = useState("")
+  const navigate = useNavigate()
 
   const login = async (e) =>{
     e.preventDefault()
@@ -16,6 +18,7 @@ function LoginForm() {
     try{
       setLoginError("")
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+      navigate("/user#")
     }
     catch(err){
       setLoginError(err.message)
