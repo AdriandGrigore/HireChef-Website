@@ -47,6 +47,11 @@
     margin-top: 2rem;
 }
 
+.signup-error{
+    color: red;
+    font-weight: bold;
+}
+
 .signup-form label{
     margin-top: 1rem;
     font-size: 1.2rem;
