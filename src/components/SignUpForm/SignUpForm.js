@@ -11,6 +11,8 @@ function SignUpForm() {
   const [signupPassword,setSignUpPassword]  = useState("")
   const [signupConfirmPassword,setSignUpConfirmPassword]  = useState("")
   const [signupError,setSignUpError]  = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const navigate = useNavigate()
 
   const signUp= async (e) =>{
@@ -19,6 +21,12 @@ function SignUpForm() {
     if(signupPassword !== signupConfirmPassword){
       return setSignUpError("Passwords do not match")
     }
+    else if(firstName.length < 3){
+      return setSignUpError("First name should be at least 3 characters")
+    }
+    else if (lastName.length < 3){
+      return setSignUpError("Last name should be at least 3 characters")
+    }
 
     try{
       setSignUpError("")
@@ -26,7 +34,18 @@ function SignUpForm() {
       navigate("/user#")
     }
     catch(err){
-      setSignUpError(err.message)
+      switch(err.code){
+        case "auth/invalid-email":
+          return setSignUpError("Email is invalid")
+        case "auth/email-already-in-use":
+          return setSignUpError("Email already in use")
+        case "auth/weak-password":
+          return setSignUpError("Password should be at least 6 characters")
+        case "auth/missing-password":
+          return setSignUpError("Missing password")
+        default :
+          return setSignUpError(err.message)
+      }
     }
   }
 
@@ -46,11 +65,15 @@ function SignUpForm() {
             <input 
               type='text' 
               id="firstName"
+              value={firstName}
+              onChange={(e)=>setFirstName(e.target.value)}
             />
             <label htmlFor='lastName'>Last Name</label>
             <input 
               type='text' 
-              id="lastName" 
+              id="lastName"
+              value={lastName}
+              onChange={(e)=>setLastName(e.target.value)} 
             />
             <label htmlFor="signupEmail">E-mail</label>
             <input 

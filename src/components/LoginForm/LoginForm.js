@@ -21,7 +21,20 @@ function LoginForm() {
       navigate("/user#")
     }
     catch(err){
-      setLoginError(err.message)
+      switch(err.code){
+        case "auth/missing-password":
+          return setLoginError("Missing password")
+        case "auth/wrong-password":
+          return setLoginError("Wrong password")
+        case "auth/user-not-found":
+          return setLoginError("User not found")
+        case "auth/invalid-email":
+          return setLoginError("Email is invalid")
+        case "auth/too-many-requests":
+          return setLoginError("To many failed login attempts. Try again later")
+        default: 
+          return setLoginError(err.message)
+      }
     }
   }
 
