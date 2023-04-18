@@ -38,10 +38,20 @@ function SignUpForm() {
         </div>
         <div className='signup-form'>
           <div className='signup-text'>
-            <h1>Create Account</h1>
+            <h1>Sign Up</h1>
           </div>
           <form onSubmit={signUp}>
             {signupError ? <small className='signup-error'>{signupError}</small> : null}
+            <label htmlFor='firstName'>First Name</label>
+            <input 
+              type='text' 
+              id="firstName"
+            />
+            <label htmlFor='lastName'>Last Name</label>
+            <input 
+              type='text' 
+              id="lastName" 
+            />
             <label htmlFor="signupEmail">E-mail</label>
             <input 
               type='email' 

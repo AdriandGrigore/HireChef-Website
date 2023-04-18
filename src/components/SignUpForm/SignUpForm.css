@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: rgba(228, 226, 226, 0.726);
 }
 
@@ -10,8 +10,8 @@
     display: flex;
     align-items: center;
     width: 900px;
-    height: 70%;
-    margin: 0rem 1rem;
+    height: 655px;
+    margin: 6rem 1rem 1rem 1rem;
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
     animation: 0.25s signup-card ease-out;
@@ -40,7 +40,6 @@
     text-shadow: 0px 1px 2px rgba(0,0,0,0.41)
 }
 
-
 .signup-form form {
     display: flex;
     flex-direction: column;
@@ -50,10 +49,11 @@
 .signup-error{
     color: red;
     font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
 .signup-form label{
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-size: 1.2rem;
     font-weight: bold;
     color: rgb(0, 0, 0);
@@ -72,8 +72,7 @@
 
 .signup-form button {
     width: 7rem;
-    margin: 2rem auto 0;
-    margin-top: 2rem;
+    margin: 1.5rem auto 0 auto;
     padding: 0.35rem 1rem;
     font-size: 1.15rem;
     border: none;
@@ -103,11 +102,11 @@
 
 @keyframes signup-card{
     0%{
-        height: 0%;
+        height: 0px;
         width: 300px;
     }
     100%{
-        height: 70%;
+        height: 655px;
         width: 900px;
     }
 }
@@ -128,15 +127,16 @@
     }
 }
 
-
 @media screen and (max-width:435px) {
     .signup-text{
         font-size: 1.7rem;
     }
     .signup-card{
-        height: 100%;
-        margin: auto 0;
-        background-color: rgba(248, 248, 248, 0.425);
+        min-height: 90vh;
+        margin: 0rem;
+        padding-top: 2rem;
+        background-color: transparent;
+        box-shadow: none;
         animation: none;
     }
 }
