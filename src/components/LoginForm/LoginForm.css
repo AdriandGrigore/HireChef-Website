@@ -49,6 +49,7 @@
 .login-error{
     color: red;
     font-weight: bold;
+    letter-spacing: 0.5px;
 }
 
 .login-form label{
