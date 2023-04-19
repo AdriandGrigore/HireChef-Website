@@ -112,7 +112,7 @@ function SignUpForm() {
           </div>
         </div>
       </div>
-  </section>
+    </section>
   )
 }
 
