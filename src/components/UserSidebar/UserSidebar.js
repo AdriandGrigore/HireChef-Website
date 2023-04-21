@@ -3,10 +3,12 @@ import { NavHashLink as Link } from 'react-router-hash-link'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../util/firebase-config'
 import { useNavigate } from 'react-router-dom'
+import {BiDownArrowAlt, BiUpArrowAlt} from "react-icons/bi"
 import "../../components/UserSidebar/UserSidebar.css"
 
 function UserSidebar() {
     const [logoutError, setLogoutError] = useState("")
+    const [openMenu, setOpenMenu] = useState(false)
     const navigate = useNavigate()
 
     const logout = async () =>{
@@ -18,14 +20,21 @@ function UserSidebar() {
         setLogoutError("Something went wrong.Try again")
         }
     }
-  
+    
+    const toggleAccMenu = () =>{
+        setOpenMenu(!openMenu)
+    }
+
   return (
     <div className='sidebar-container'>
-        <div className='my-account-text'>
-            <h1>My account</h1>
-        </div>
-        <nav className='sidebar-menu'>
-            <h3>Welcome, Adrian Grigore</h3>
+        <button className='my-account-button' onClick={toggleAccMenu}>
+            My account {openMenu ? <BiUpArrowAlt/> : <BiDownArrowAlt/>}
+        </button>
+        <nav className='sidebar-menu' style={openMenu ? {display:"block"} : {display:"none"}}>
+            <h3>
+                <span>Welcome,</span> 
+                <span className='user-name'>Adrian Grigore</span>
+            </h3>
             <ul>
                 <li>
                     <Link to="/user/meetings#">Your meetings</Link>
@@ -38,8 +47,8 @@ function UserSidebar() {
                 </li>
                 <button className='log-out-button' onClick={logout}>Log Out</button>
             </ul>
+            {logoutError ? <small className='log-out-error'>{logoutError}</small> : null}
         </nav>
-        {logoutError ? <small className='log-out-error'>{logoutError}</small> : null}
     </div>
   )
 }

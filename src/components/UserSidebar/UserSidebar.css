@@ -2,24 +2,50 @@
     padding-top: 8rem;
 }
 
-.my-account-text{
+.my-account-button{
+    display: flex;
+    align-items: center;
+    width: fit-content;
     margin-left: 2.5rem;
-    text-align: start;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s linear;   
+}
+
+.my-account-button:hover{
+    background-color: rgb(206, 206, 206);
+}
+
+.my-account-button svg{
+    margin-left: 0.5rem;
 }
 
 .sidebar-menu{
-    min-width: 342px;
+    position: absolute;
+    width: 342px;
     height: fit-content;
-    margin-top: 1.3rem;
-    margin-left: 2.5rem;
+    margin: 0.5rem 1.5rem 0rem 2.5rem;
     padding: 1rem 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.185);
+    border-radius: 10px;
     text-align: start;
     background-color: white;
+    animation: 0.25s acc-sidebar ease-in-out;
 }
 
 .sidebar-menu h3{
+    display: flex;
     margin-bottom: 1rem;
     font-size: 1.3rem;
+}
+
+.user-name{
+    margin-left: 0.8rem;
+    color: rgb(228, 114, 1);
 }
 
 .sidebar-menu li{
@@ -36,7 +62,7 @@
 }
 
 .sidebar-menu a:hover{
-    background-color: rgb(202, 196, 188);
+    background-color: rgba(202, 196, 188, 0.548);
 }
 
 .log-out-button{
@@ -53,12 +79,49 @@
 }
 
 .log-out-button:hover{
-    background-color: rgb(202, 196, 188);
+    background-color: rgba(202, 196, 188, 0.548);
 }   
 
 .log-out-error{
     display: block;
-    margin-top: 1rem;
+    text-align: center;
     font-weight: bold;
     color: red;
+}
+
+@keyframes acc-sidebar{
+    0%{
+        opacity: 0;
+        height: 0px;
+    }
+    100%{
+        opacity: 1;
+        height: 334px
+    }
+}
+
+@media screen and (max-width: 490px ){
+    .sidebar-menu{
+        box-sizing: border-box;
+        width: 90%;
+        margin: 0.5rem 0rem 0rem 0rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .my-account-button{
+        margin-inline: auto;
+    }
+}
+
+@media screen and (max-width:375px) {
+    .sidebar-menu h3{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .user-name{
+        text-align: center;
+        margin-left: 0rem;
+        margin-top: 0.35rem;
+    }
 }
