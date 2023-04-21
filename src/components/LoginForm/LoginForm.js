@@ -18,7 +18,7 @@ function LoginForm() {
     try{
       setLoginError("")
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-      navigate("/user#")
+      navigate("/user/meetings#")
     }
     catch(err){
       switch(err.code){

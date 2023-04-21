@@ -50,7 +50,7 @@ function Navbar() {
         <li>
           {
             currentUser ?
-            <Link onClick={()=>setClicked(false)} to="/user#"><CiUser/> Profile </Link> 
+            <Link onClick={()=>setClicked(false)} to="/user/meetings#"><CiUser/> Profile </Link> 
             :
             <Link onClick={()=>setClicked(false)} to="/login#"><AiOutlineLogin/> Log in </Link> 
           }
