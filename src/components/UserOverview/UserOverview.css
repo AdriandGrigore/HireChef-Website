@@ -1,0 +1,66 @@
+.ow-card-container{
+    display: flex;
+    justify-content: space-evenly;
+    height: fit-content;
+    margin-top: 2rem;
+    margin-inline: 2.5rem;
+}
+
+.ow-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 300px;
+    height: 130px;
+    margin-right: 2rem;
+    border-radius: 10px;
+    background-color: rgb(106, 141, 158);
+    box-shadow: -5px 10px 10px -10px #000000;   
+}
+
+.ow-card:last-child{
+    margin-right: 0rem;
+}
+
+.ow-card p{
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: rgb(0, 0, 0);
+}
+
+.ow-card span{
+    font-size: 3.7rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.ow-card:nth-child(2) span{
+    font-size: 2.5rem;
+}
+
+@media screen and (max-width:885px) {
+    .ow-card-container{
+        flex-direction: column;
+    }
+    .ow-card{
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width:490px) {
+    .ow-card-container{
+        margin-inline: 1rem;
+    }
+}
+
+@media screen and (max-width:335px) {
+   .ow-card span{
+    font-size: 3rem;
+   }
+
+   .ow-card:nth-child(2) span{
+    font-size: 2rem;
+   }
+}
