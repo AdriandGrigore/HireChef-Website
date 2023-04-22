@@ -14,7 +14,7 @@
     height: 130px;
     margin-right: 2rem;
     border-radius: 10px;
-    background-color: rgb(106, 141, 158);
+    background-color: rgb(54, 64, 70);
     box-shadow: -5px 10px 10px -10px #000000;   
 }
 
@@ -26,7 +26,7 @@
     font-size: 1.2rem;
     font-weight: bold;
     letter-spacing: 1px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 143, 78);
 }
 
 .ow-card span{
