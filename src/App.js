@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import ProtectedRoute from "./routers/ProtectedRoute";
-import UserMeetings from "./pages/UserMeetings";
+import UserBooking from "./pages/UserBooking";
 import "./App.css"
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Route path="/booking" element={<ProtectedRoute> <Booking/> </ProtectedRoute>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/user/meetings" element={<ProtectedRoute> <UserMeetings/> </ProtectedRoute>}/>
+        <Route path="/user/booking" element={<ProtectedRoute> <UserBooking/> </ProtectedRoute>}/>
       </Routes>
     </div>
   );

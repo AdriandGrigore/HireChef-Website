@@ -45,7 +45,7 @@ function Navbar() {
           <Link onClick={()=>setClicked(false)} to="/menu#"><MdOutlineRestaurantMenu/> Menu</Link>
         </li>
         <li>
-          <Link onClick={()=>setClicked(false)} to={currentUser ? "/booking#" : "/login#"}><CiBookmark/>Book meeting</Link>
+          <Link onClick={()=>setClicked(false)} to={currentUser ? "/user/booking#" : "/login#"}><CiBookmark/>Book meeting</Link>
         </li>
         <li>
           {
