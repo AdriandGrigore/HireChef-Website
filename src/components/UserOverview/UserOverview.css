@@ -49,13 +49,7 @@
     }
 }
 
-@media screen and (max-width:490px) {
-    .ow-card-container{
-        margin-inline: 1rem;
-    }
-}
-
-@media screen and (max-width:335px) {
+@media screen and (max-width:640px) {
    .ow-card span{
     font-size: 3rem;
    }
@@ -63,4 +57,10 @@
    .ow-card:nth-child(2) span{
     font-size: 2rem;
    }
+}
+
+@media screen and (max-width:490px) {
+    .ow-card-container{
+        margin-inline: 1rem;
+    }
 }
