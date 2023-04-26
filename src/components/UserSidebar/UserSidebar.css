@@ -34,7 +34,8 @@
     border-radius: 10px;
     text-align: start;
     background-color: white;
-    animation: 0.25s acc-sidebar ease-in-out;
+    animation: 0.2s acc-sidebar ease-in-out;
+    transform-origin: top;
 }
 
 .sidebar-menu h3{
@@ -90,13 +91,13 @@
 }
 
 @keyframes acc-sidebar{
-    0%{
+    0% {
         opacity: 0;
-        height: 0px;
+        transform: scaleY(0)
     }
-    100%{
+    100% {
         opacity: 1;
-        height: 334px
+        transform: scaleY(1)
     }
 }
 
@@ -104,9 +105,9 @@
     .sidebar-menu{
         box-sizing: border-box;
         width: 90%;
-        margin: 0.5rem 0rem 0rem 0rem;
-        left: 50%;
-        transform: translateX(-50%);
+        margin: 0.5rem auto 0rem auto;
+        left: 0;
+        right: 0;
     }
     .my-account-button{
         margin-inline: auto;
