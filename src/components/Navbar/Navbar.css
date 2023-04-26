@@ -17,7 +17,7 @@
 }
 
 .navbar-hidden{
- top:-20%;
+    top:-20%;
 }
 
 .navbar-logo-container img{
@@ -33,6 +33,9 @@
 }
 
 .navbar-menu a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 1.5rem;
     padding: 0.6rem ;
     font-size: 1.3rem;
@@ -40,7 +43,7 @@
     color: black;
     text-decoration: none;
     white-space: nowrap;
-    transition: 0.3s ease-in-out;
+    transition: 0.2s ease-in-out;
 }
 
 .navbar-menu a:hover{
@@ -48,6 +51,10 @@
     color: white;
     border-radius: 5px;
     font-weight: 400;
+}
+
+.navbar-menu svg{
+    margin-right: 0.15rem;
 }
 
 .burger-menu{
@@ -75,12 +82,9 @@
 
     .navbar-menu a{
         padding: 1.5rem;
+        margin-right: 0rem;
     }
 
-    .navbar-menu li{
-        padding:2rem;
-    }
-   
     .burger-menu{
         display: block;
         font-size: 1.5rem;
