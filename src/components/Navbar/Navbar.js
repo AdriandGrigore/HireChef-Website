@@ -9,9 +9,9 @@ import useAuth from '../../custom-hooks/useAuth'
 import "../Navbar/Navbar.css"
 
 function Navbar() {
-  const [clicked, setClicked]=useState(false)
+  const [hamburgerMenu, setHamburgerMenu]=useState(false)
   const [scrollPosition,setScrollPosition]=useState({position:0, prevPosition:0})
-  const isVisible= scrollPosition.position<=scrollPosition.prevPosition
+  const isNavbarVisible = scrollPosition.position<=scrollPosition.prevPosition
   const {currentUser} = useAuth()
   
   useEffect(() => {
@@ -25,34 +25,38 @@ function Navbar() {
       window.removeEventListener("scroll", onScroll)
     }
   }, [])
-  
+
+  const closeHamburgerMenu = () =>{
+    setHamburgerMenu(false)
+  }
+
   return (
-    <nav className={isVisible? "navbar" : "navbar navbar-hidden"}>
+    <nav className={ isNavbarVisible ? "navbar" : "navbar navbar-hidden"}>
       <div className="navbar-logo-container">
-        <Link to="/#"><img src={logo} alt="logo"/></Link>
+        <Link onClick={closeHamburgerMenu} to="/#"> <img src={logo} alt="logo"/> </Link>
       </div>
-      <div onClick={()=>setClicked(!clicked)} className="burger-menu">
-       {clicked?<AiOutlineClose/>:<RxHamburgerMenu/>}
+      <div onClick={()=>setHamburgerMenu(!hamburgerMenu)} className="burger-menu">
+       {hamburgerMenu ? <AiOutlineClose/> : <RxHamburgerMenu/>}
       </div>
-      <ul className={clicked && isVisible?"navbar-menu mobile":"navbar-menu"}>
+      <ul className={hamburgerMenu && isNavbarVisible ? "navbar-menu mobile" : "navbar-menu"}>
         <li>
-         <Link onClick={()=>setClicked(false)} to="/#"><CiHome/> Home</Link>
+         <Link onClick={closeHamburgerMenu} to="/#"><CiHome/> Home</Link>
         </li>
         <li>
-          <Link onClick={()=>setClicked(false)} to="/#about"><CiCircleInfo/> About</Link>
+          <Link onClick={closeHamburgerMenu} to="/#about"><CiCircleInfo/> About</Link>
         </li>
         <li>
-          <Link onClick={()=>setClicked(false)} to="/menu#"><MdOutlineRestaurantMenu/> Menu</Link>
+          <Link onClick={closeHamburgerMenu} to="/menu#"><MdOutlineRestaurantMenu/> Menu</Link>
         </li>
         <li>
-          <Link onClick={()=>setClicked(false)} to={currentUser ? "/user/booking#" : "/login#"}><CiBookmark/>Book meeting</Link>
+          <Link onClick={closeHamburgerMenu} to={currentUser ? "/user/booking#" : "/login#"}><CiBookmark/>Book meeting</Link>
         </li>
         <li>
           {
             currentUser ?
-            <Link onClick={()=>setClicked(false)} to="/user/meetings#"><CiUser/> Profile </Link> 
+            <Link onClick={closeHamburgerMenu} to="/user/meetings#"><CiUser/> Profile </Link> 
             :
-            <Link onClick={()=>setClicked(false)} to="/login#"><AiOutlineLogin/> Log in </Link> 
+            <Link onClick={closeHamburgerMenu} to="/login#"><AiOutlineLogin/> Log in </Link> 
           }
         </li>
       </ul>
