@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import formReducer from "../features/formSlice"
+import bookingFormReducer from "../features/bookingFormSlice"
 import modalReducer from "../features/modalSlice"
 
 export const store = configureStore({
     reducer:{
-        form: formReducer,
+        bookingForm: bookingFormReducer,
         modal: modalReducer,
     }
 })
