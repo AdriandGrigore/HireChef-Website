@@ -2,9 +2,10 @@ import React, {useState} from 'react'
 import { NavHashLink as Link } from 'react-router-hash-link'
 import signupImg from "../../assets/signupImg.jpg"
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth, db } from '../../util/firebase-config'
+import { auth } from '../../util/firebase-config'
 import { useNavigate } from 'react-router-dom'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc } from 'firebase/firestore'
+import { usersCollectionRef } from '../../util/firebase-config'
 import User from "../../models/User"
 import "../SignUpForm/SignUpForm.css"
 
@@ -15,7 +16,6 @@ function SignUpForm() {
   const [signupError,setSignUpError]  = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  const usersCollectionRef = collection(db, "users")
   const navigate = useNavigate()
 
   const signUp= async (e) =>{
