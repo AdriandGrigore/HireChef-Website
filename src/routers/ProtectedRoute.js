@@ -3,9 +3,9 @@ import useAuth from '../custom-hooks/useAuth'
 import Login from '../pages/Login'
 
 function ProtectedRoute({children}) {
-    const {currentUser} = useAuth()
+    const {loggedInUser} = useAuth()
 
-    return currentUser ? children : <Login/>
+    return loggedInUser ? children : <Login/>
 }
 
 export default ProtectedRoute

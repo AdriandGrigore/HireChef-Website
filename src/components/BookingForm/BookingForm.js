@@ -21,7 +21,7 @@ const getCurrentDate=()=>{
 }
 
 function BookingForm() {
-    const {currentUser} = useAuth()
+    const {loggedInUser} = useAuth()
     const {phoneNumber, menu, chef, date, submitBtnIsDisabled} = useSelector((state)=>state.bookingForm)
     const dispatch = useDispatch()
     
@@ -58,7 +58,7 @@ function BookingForm() {
     const sendMeetingToDb = async (e) =>{
         e.preventDefault()
         try{ 
-            await addDoc(meetingsCollectionRef, {...new Meeting(currentUser.uid, phoneNumber.value, menu.value, chef.value, date.value)})
+            await addDoc(meetingsCollectionRef, {...new Meeting(loggedInUser.uid, phoneNumber.value, menu.value, chef.value, date.value)})
             dispatch(openModal())
         }
         catch{

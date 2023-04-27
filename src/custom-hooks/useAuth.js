@@ -3,21 +3,21 @@ import { useEffect, useState } from "react";
 import { auth } from "../util/firebase-config";
 
 function useAuth() {
-    const [currentUser, setCurrentUser] = useState({})
+    const [loggedInUser, setLoggedInUser] = useState({})
     
     useEffect(()=>{
         onAuthStateChanged(auth, (user)=>{
             if(user){
-                setCurrentUser(user)
+                setLoggedInUser(user)
             }
             else{
-                setCurrentUser(null)
+                setLoggedInUser(null)
             }
         })
     })
 
     return {
-        currentUser
+        loggedInUser
     }
 }
 

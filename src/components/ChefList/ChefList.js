@@ -12,7 +12,7 @@ import "../ChefList/ChefList.css"
 
 function ChefList() {
     const dispatch = useDispatch()
-    const {currentUser} = useAuth()
+    const {loggedInUser} = useAuth()
 
     const handleClick=(e)=>{
         dispatch(inputChange({inputName:"chef", value:e.target.name}))
@@ -29,7 +29,7 @@ function ChefList() {
                     <p> Based in Toronto, 20 years of experience,  she manages every time to delight her customers with colorful and delicious dishes. 
                         Lisa loves and respects her job and because of that she is using only fresh local products.
                     </p>
-                    <Link to={currentUser ? "/user/booking#" : "/login#"} name="Lisa Quinn" onClick={handleClick} >Book a meeting</Link>
+                    <Link to={loggedInUser ? "/user/booking#" : "/login#"} name="Lisa Quinn" onClick={handleClick} >Book a meeting</Link>
                 </div>
                 <img src={chef2} alt="chefPhoto" loading='lazy'/>
                 <div className='chef-description'>
@@ -38,7 +38,7 @@ function ChefList() {
                     <p>Based in Springfield, 8 years of experience,Ben is the youngest chef in our team . He has a special talent and love for Asian food, famous for its combination of  spices,
                         he will make sure that you will enjoy the most amazing culinary experience. 
                     </p>
-                    <Link to={currentUser ? "/user/booking#" : "/login#"} name="Ben Malone" onClick={handleClick} >Book a meeting</Link>
+                    <Link to={loggedInUser ? "/user/booking#" : "/login#"} name="Ben Malone" onClick={handleClick} >Book a meeting</Link>
                 </div>
                 <img src={chef3} alt="chefPhoto" loading='lazy'/>
                 <div className='chef-description'>
@@ -47,7 +47,7 @@ function ChefList() {
                     <p>Based in Miami, he is best known for his delicious seafood dishes, and not only. His 15 years of experience can prove all his knowledge in culinary arts.
                         Also his platings skills are known to be the best. 
                     </p>
-                    <Link to={currentUser ? "/user/booking#" : "/login#"} name="Liam Pierce" onClick={handleClick} >Book a meeting</Link>
+                    <Link to={loggedInUser ? "/user/booking#" : "/login#"} name="Liam Pierce" onClick={handleClick} >Book a meeting</Link>
                 </div>
             </div>
         </section>

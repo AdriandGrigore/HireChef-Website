@@ -12,7 +12,7 @@ function Navbar() {
   const [hamburgerMenu, setHamburgerMenu]=useState(false)
   const [scrollPosition,setScrollPosition]=useState({position:0, prevPosition:0})
   const isNavbarVisible = scrollPosition.position<=scrollPosition.prevPosition
-  const {currentUser} = useAuth()
+  const {loggedInUser} = useAuth()
   
   useEffect(() => {
     const onScroll = () => {
@@ -49,11 +49,11 @@ function Navbar() {
           <Link onClick={closeHamburgerMenu} to="/menu#"><MdOutlineRestaurantMenu/> Menu</Link>
         </li>
         <li>
-          <Link onClick={closeHamburgerMenu} to={currentUser ? "/user/booking#" : "/login#"}><CiBookmark/>Book meeting</Link>
+          <Link onClick={closeHamburgerMenu} to={loggedInUser ? "/user/booking#" : "/login#"}><CiBookmark/>Book meeting</Link>
         </li>
         <li>
           {
-            currentUser ?
+            loggedInUser ?
             <Link onClick={closeHamburgerMenu} to="/user/meetings#"><CiUser/> Profile </Link> 
             :
             <Link onClick={closeHamburgerMenu} to="/login#"><AiOutlineLogin/> Log in </Link> 
