@@ -1,16 +1,31 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { NavHashLink as Link } from 'react-router-hash-link'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../util/firebase-config'
 import { useNavigate } from 'react-router-dom'
 import {BiDownArrowAlt, BiUpArrowAlt} from "react-icons/bi"
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchUsers } from '../../features/userSlice'
+import useAuth from "../../custom-hooks/useAuth"
 import "../../components/UserSidebar/UserSidebar.css"
 
 function UserSidebar() {
     const [logoutError, setLogoutError] = useState("")
     const [openMenu, setOpenMenu] = useState(false)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const {loggedInUser} = useAuth()
+    const {usersList, usersLoading} = useSelector(state => state.users)
+    
+    const loggedInUserFullName = usersList
+        .filter(user => user.id === loggedInUser.uid)
+        .map(user => (
+            <span className="user-name">
+                {user.firstName} {user.lastName}
+            </span>
+    ));
 
+  
     const logout = async () =>{
         try{
         await signOut(auth)
@@ -25,6 +40,10 @@ function UserSidebar() {
         setOpenMenu(!openMenu)
     }
 
+    useEffect(() => {
+        dispatch(fetchUsers())
+    }, [dispatch])
+
   return (
     <div className='sidebar-container'>
         <button className='my-account-button' onClick={toggleAccMenu}>
@@ -32,8 +51,8 @@ function UserSidebar() {
         </button>
         <nav className='sidebar-menu' style={openMenu ? {display:"block"} : {display:"none"}}>
             <h3>
-                <span>Welcome,</span> 
-                <span className='user-name'>Adrian Grigore</span>
+                <span className='welcome-span'>Welcome,</span> 
+                {usersLoading ? <span className='user-name'>User</span> : loggedInUserFullName}
             </h3>
             <ul>
                 <li>
