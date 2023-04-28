@@ -19,8 +19,8 @@ function Modal() {
                 <h3>Press the button below to see your meetings</h3>
             </div>
             <div className='modal-buttons'>
-                <Link to="/user/meetings"> Meetings </Link>
-                <button onClick={()=>dispatch(closeModal())}> Go back to page</button>
+                <Link onClick={() => dispatch(closeModal())} to="/user/meetings"> Meetings </Link>
+                <button onClick={() => dispatch(closeModal())}> Go back to page</button>
             </div>
         </div>
     </div>
