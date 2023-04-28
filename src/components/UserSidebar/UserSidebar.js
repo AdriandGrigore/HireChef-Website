@@ -20,7 +20,7 @@ function UserSidebar() {
     const loggedInUserFullName = usersList
         .filter(user => user.id === loggedInUser.uid)
         .map(user => (
-            <span className="user-name">
+            <span className="user-name" key={user.id}>
                 {user.firstName} {user.lastName}
             </span>
     ));
