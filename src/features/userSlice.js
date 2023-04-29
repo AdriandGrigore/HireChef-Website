@@ -3,14 +3,14 @@ import { getDocs} from 'firebase/firestore'
 import { usersCollectionRef } from "../util/firebase-config";
 
 const initialState = {
-    usersList:[],
-    usersLoading: false,
-    usersError: "",
+    loggedInUserData:[],
+    loggedInUserDataLoading: false,
+    loggedInUserDataError: "",
 }
 
-export const fetchUsers = createAsyncThunk("firestore/fetchUsers", async () =>{
+export const fetchUserData = createAsyncThunk("firestore/fetchUserData", async (loggedInUser) =>{
     const res = await getDocs(usersCollectionRef)
-    const data = res.docs.map((doc) => ({...doc.data()}))
+    const data = res.docs.map((doc) => ({...doc.data()})).filter(user => user.id === loggedInUser.uid)
 
     return data;
 })
@@ -21,16 +21,16 @@ const userSlice = createSlice({
     initialState,
     reducers:{},
     extraReducers: (builder)=>{
-        builder.addCase(fetchUsers.pending, (state) =>{
-            state.usersLoading = true;
+        builder.addCase(fetchUserData.pending, (state) =>{
+            state.loggedInUserDataLoading = true;
         })
-        builder.addCase(fetchUsers.fulfilled, (state, action) =>{
-            state.usersList = action.payload
-            state.usersLoading = false
+        builder.addCase(fetchUserData.fulfilled, (state, action) =>{
+            state.loggedInUserData = action.payload
+            state.loggedInUserDataLoading = false
         })
-        builder.addCase(fetchUsers.rejected, (state, action) => {
-            state.usersError = action.error.message
-            state.usersLoading = false
+        builder.addCase(fetchUserData.rejected, (state, action) => {
+            state.loggedInUserDataError = action.error.message
+            state.loggedInUserDataLoading = false
         })
     }
 })

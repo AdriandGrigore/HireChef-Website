@@ -5,7 +5,7 @@ import { auth } from '../../util/firebase-config'
 import { useNavigate } from 'react-router-dom'
 import {BiDownArrowAlt, BiUpArrowAlt} from "react-icons/bi"
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUsers } from '../../features/userSlice'
+import { fetchUserData } from '../../features/userSlice'
 import useAuth from "../../custom-hooks/useAuth"
 import "../../components/UserSidebar/UserSidebar.css"
 
@@ -15,10 +15,9 @@ function UserSidebar() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {loggedInUser} = useAuth()
-    const {usersList, usersLoading} = useSelector(state => state.users)
+    const {loggedInUserData, loggedInUserDataLoading} = useSelector(state => state.users)
     
-    const loggedInUserFullName = usersList
-        .filter(user => user.id === loggedInUser.uid)
+    const loggedInUserFullName = loggedInUserData
         .map(user => (
             <span className="user-name" key={user.id}>
                 {user.firstName} {user.lastName}
@@ -41,8 +40,8 @@ function UserSidebar() {
     }
 
     useEffect(() => {
-        dispatch(fetchUsers())
-    }, [dispatch])
+        dispatch(fetchUserData(loggedInUser))
+    }, [dispatch, loggedInUser])
 
   return (
     <div className='sidebar-container'>
@@ -52,7 +51,7 @@ function UserSidebar() {
         <nav className='sidebar-menu' style={openMenu ? {display:"block"} : {display:"none"}}>
             <h3>
                 <span className='welcome-span'>Welcome,</span> 
-                {usersLoading ? <span className='user-name'>User</span> : loggedInUserFullName}
+                {loggedInUserDataLoading ? <span className='user-name'>User</span> : loggedInUserFullName}
             </h3>
             <ul>
                 <li>
