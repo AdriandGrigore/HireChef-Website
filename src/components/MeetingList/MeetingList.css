@@ -1,0 +1,150 @@
+.meetings-section {
+  min-height: 100vh;
+  width: 100%;
+  padding-bottom: 2rem;
+  background-image: url("../../assets/bookingBackground.jpg");
+  background-size: cover;
+}
+
+.fetching-error-message {
+  color: red;
+  margin-top: 4.5rem;
+  font-size: 2rem;
+}
+
+.delete-error-message {
+  margin-top: 4.5rem;
+  color: red;
+}
+
+.loading-message {
+  margin-top: 4.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.no-meetings-message {
+  margin-top: 5rem;
+  font-size: 2rem;
+}
+
+.table-wrapper {
+  width: min(100% - 2.5rem, 1450px);
+  margin-inline: auto;
+}
+
+.meetings-table {
+  width: 100%;
+  margin: 4.5rem auto 0rem auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: white;
+}
+
+.meetings-table tr:nth-child(odd) {
+  background-color: rgba(177, 177, 177, 0.185);
+}
+
+.meetings-table th {
+  padding: 1rem 0rem;
+  font-size: 1.15rem;
+  background-color: rgba(37, 43, 48, 0.76);
+  color: white;
+  border: 1px solid black;
+}
+
+.meetings-table td {
+  padding: 0.65rem 0rem;
+  border: 1px solid black;
+}
+
+.actions-cell {
+  width: 230px;
+}
+
+.actions-cell button {
+  padding: 0.6rem 1.1rem;
+  font-weight: bold;
+  background-color: transparent;
+  border: 1px solid rgba(128, 128, 128, 0.747);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.actions-cell button:first-child {
+  color: rgb(0, 0, 255);
+  margin-right: 0.5rem;
+}
+
+.actions-cell button:first-child:hover {
+  background-color: rgba(0, 0, 255, 0.733);
+  color: white;
+  transition: 0.2s ease-in-out;
+}
+
+.actions-cell button:nth-child(2) {
+  color: rgb(216, 0, 0);
+}
+
+.actions-cell button:nth-child(2):hover {
+  background-color: rgba(216, 0, 0, 0.733);
+  color: white;
+  transition: 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 885px) {
+  .delete-error-message {
+    margin-top: 0rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.795);
+  }
+
+  .table-wrapper {
+    width: min(100% - 5rem, 1450px);
+  }
+
+  .meetings-table {
+    margin-top: 0rem;
+  }
+
+  .meetings-table th {
+    display: none;
+  }
+
+  .meetings-table td::before {
+    content: attr(data-cell) ": ";
+    font-weight: bold;
+  }
+
+  .meetings-table td:last-child::before {
+    content: "";
+  }
+
+  .meetings-table td {
+    display: block;
+    margin-inline: 1.5rem;
+    text-align: start;
+    font-size: 1.2rem;
+    border: none;
+  }
+
+  .actions-cell {
+    width: auto;
+  }
+
+  .actions-cell button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .delete-error-message {
+    font-size: 1.3rem;
+  }
+
+  .table-wrapper {
+    width: min(100%, 1450px);
+  }
+}
