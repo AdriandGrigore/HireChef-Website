@@ -2,12 +2,13 @@ import React from 'react'
 import UserSidebar from "../UserSidebar/UserSidebar"
 import UserOverview from "../UserOverview/UserOverview"
 import useAuth from "../../custom-hooks/useAuth"
-import { addDoc } from 'firebase/firestore'
+import { Timestamp, addDoc } from 'firebase/firestore'
 import Meeting from "../../models/Meeting"
 import { useDispatch, useSelector } from 'react-redux'
 import { formNotValid, formValid, inputChange, inputStatus, resetForm } from '../../features/bookingFormSlice'
 import {openModal} from "../../features/modalSlice"
 import { meetingsCollectionRef } from '../../util/firebase-config'
+import { fetchMeetings } from '../../features/meetingSlice'
 import "../BookingForm/BookingForm.css"
 
 const getCurrentDate=()=>{
@@ -58,13 +59,14 @@ function BookingForm() {
     const sendMeetingToDb = async (e) =>{
         e.preventDefault()
         try{ 
-            await addDoc(meetingsCollectionRef, {...new Meeting(loggedInUser.uid, phoneNumber.value, menu.value, chef.value, date.value)})
+            await addDoc(meetingsCollectionRef, {...new Meeting(loggedInUser.uid, phoneNumber.value, menu.value, chef.value, Timestamp.fromDate(new Date(date.value)))})
             dispatch(openModal())
         }
         catch{
             alert("Something went wrong, please try again")
         }
         dispatch(resetForm())
+        dispatch(fetchMeetings(loggedInUser))
     }
 
     return (
