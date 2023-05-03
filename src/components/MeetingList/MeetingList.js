@@ -3,6 +3,7 @@ import UserSidebar from "../UserSidebar/UserSidebar"
 import UserOverview from "../UserOverview/UserOverview"
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteMeeting } from '../../features/meetingSlice'
+import { NavHashLink as Link } from 'react-router-hash-link'
 import "../MeetingList/MeetingList.css"
 
 function MeetingList() {
@@ -16,7 +17,7 @@ function MeetingList() {
         <td data-cell="Menu">{meeting.menu}</td>
         <td data-cell="Phone Number">{meeting.phoneNumber}</td>
         <td data-cell="Actions" className='actions-cell'>
-          <button>Edit</button>
+          <Link to="/user/booking#">Edit</Link>
           <button onClick={()=>dispatch(deleteMeeting(meeting.meetingId))}>Delete</button>
         </td>
       </tr>
