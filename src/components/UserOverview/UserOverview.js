@@ -1,11 +1,19 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchMeetings } from '../../features/meetingSlice'
+import useAuth from '../../custom-hooks/useAuth'
 import "../UserOverview/UserOverview.css"
 
 function UserOverview() {
   const {userMeetingsList} = useSelector(state=>state.meetings)
   const upcomingMeeting = userMeetingsList.length > 0 ? userMeetingsList[0].date : "-"
-  
+  const {loggedInUser} = useAuth()
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(fetchMeetings(loggedInUser))
+  },[dispatch, loggedInUser])
+
   return (
     <div className='ow-card-container'>
       <div className='ow-card'>

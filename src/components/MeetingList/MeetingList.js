@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import UserSidebar from "../UserSidebar/UserSidebar"
 import UserOverview from "../UserOverview/UserOverview"
 import { useDispatch, useSelector } from 'react-redux'
-import useAuth from '../../custom-hooks/useAuth'
-import { deleteMeeting, fetchMeetings } from '../../features/meetingSlice'
+import { deleteMeeting } from '../../features/meetingSlice'
 import "../MeetingList/MeetingList.css"
 
 function MeetingList() {
   const {userMeetingsList, userMeetingsLoading, deleteMeetingError, userMeetingsError} = useSelector(state => state.meetings)
-  const {loggedInUser} = useAuth()
   const dispatch = useDispatch()
   const loggedInUserMeetings = userMeetingsList
     .map(meeting => (
@@ -24,10 +22,6 @@ function MeetingList() {
       </tr>
   ))
   
-  useEffect(()=>{
-    dispatch(fetchMeetings(loggedInUser))
-  },[dispatch, loggedInUser])
-
   return (
     <section className='meetings-section'>
       <UserSidebar />
