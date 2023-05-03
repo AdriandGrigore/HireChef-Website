@@ -4,11 +4,30 @@ import UserOverview from "../UserOverview/UserOverview"
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteMeeting } from '../../features/meetingSlice'
 import { NavHashLink as Link } from 'react-router-hash-link'
+import { changeToEditForm, formValid, inputChange, inputStatus} from '../../features/bookingFormSlice'
 import "../MeetingList/MeetingList.css"
 
 function MeetingList() {
   const {userMeetingsList, userMeetingsLoading, deleteMeetingError, userMeetingsError} = useSelector(state => state.meetings)
   const dispatch = useDispatch()
+  
+  const convertDateFormat = (dateString) => {
+    var parts = dateString.split("/");
+    var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
+    return formattedDate;
+  }
+
+  const populateEditForm = (date, chef, menu, phoneNumber)=>{
+    const inputNames = ["date", "chef", "menu", "phoneNumber"]
+    const inputValues = [date, chef, menu, phoneNumber]
+    inputNames.forEach((name, index) =>{
+      dispatch(inputChange({inputName: name, value: inputValues[index]}))
+      dispatch(inputStatus({inputName: name}))
+    })
+    dispatch(formValid())
+    dispatch(changeToEditForm())
+  }
+  
   const loggedInUserMeetings = userMeetingsList
     .map(meeting => (
       <tr key ={meeting.meetingId}>
@@ -17,7 +36,11 @@ function MeetingList() {
         <td data-cell="Menu">{meeting.menu}</td>
         <td data-cell="Phone Number">{meeting.phoneNumber}</td>
         <td data-cell="Actions" className='actions-cell'>
-          <Link to="/user/booking#">Edit</Link>
+          <Link
+            onClick={() => populateEditForm(convertDateFormat(meeting.date), meeting.chef, meeting.menu, meeting.phoneNumber)}
+            to="/user/booking#">
+            Edit
+          </Link>
           <button onClick={()=>dispatch(deleteMeeting(meeting.meetingId))}>Delete</button>
         </td>
       </tr>

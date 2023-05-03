@@ -21,6 +21,7 @@ const initialState = {
     wasClicked: false,
     errorMsg:"Select a date"
   },
+  editFormStatus: false,
   submitBtnIsDisabled: true
 }
 
@@ -40,6 +41,9 @@ const bookingFormSlice= createSlice({
     formNotValid:(state)=>{
       state.submitBtnIsDisabled= true
     },
+    changeToEditForm: (state)=>{
+      state.editFormStatus = true
+    },
     resetForm:()=>{
       return initialState
     }
@@ -47,4 +51,4 @@ const bookingFormSlice= createSlice({
 })
 
 export default bookingFormSlice.reducer
-export const { inputChange,inputStatus, formValid, formNotValid, resetForm} = bookingFormSlice.actions
+export const { inputChange,inputStatus, formValid, formNotValid, resetForm, changeToEditForm} = bookingFormSlice.actions

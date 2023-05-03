@@ -23,7 +23,7 @@ const getCurrentDate=()=>{
 
 function BookingForm() {
     const {loggedInUser} = useAuth()
-    const {phoneNumber, menu, chef, date, submitBtnIsDisabled} = useSelector((state)=>state.bookingForm)
+    const {phoneNumber, menu, chef, date,submitBtnIsDisabled, editFormStatus} = useSelector((state)=>state.bookingForm)
     const dispatch = useDispatch()
     
     const errCondition ={
@@ -74,7 +74,7 @@ function BookingForm() {
             <UserSidebar />
             <UserOverview />
             <form className='booking-form' onSubmit={sendMeetingToDb} autoComplete='off'>
-                <h1>Book a meeting</h1>
+                <h1>{editFormStatus ? "Update Meeting" : "Book a meeting"}</h1>
                 <div>
                     <label htmlFor='phoneNumber'>Phone Number: <sup>*</sup></label>
                     <input 
@@ -123,7 +123,12 @@ function BookingForm() {
                     />
                 </div>
                 {errCondition.date ? <small>{date.errorMsg}</small> : null}
-                <button type="submit" className={ submitBtnIsDisabled ? "submit-button disabled": "submit-button" } disabled={submitBtnIsDisabled}>SUBMIT</button>
+                <button
+                    type="submit"
+                    className={submitBtnIsDisabled ? "submit-button disabled" : "submit-button"}
+                    disabled={submitBtnIsDisabled}>
+                    {editFormStatus ? "UPDATE" : "SUBMIT"}
+                </button>
             </form>
         </section>
     )
