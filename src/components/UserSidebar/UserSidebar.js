@@ -27,11 +27,11 @@ function UserSidebar() {
   
     const logout = async () =>{
         try{
-        await signOut(auth)
-        navigate("/login#")
+            await signOut(auth)
+            navigate("/login#")
         }
         catch(err){
-        setLogoutError("Something went wrong.Try again")
+            setLogoutError("Something went wrong.Try again")
         }
     }
     
