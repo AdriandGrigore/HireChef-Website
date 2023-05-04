@@ -40,7 +40,7 @@ function SignUpForm() {
       catch(err){
         setSignUpError(err.message)
       }
-      navigate("/user#")
+      navigate("/user/meetings#")
     }
     catch(err){
       switch(err.code){
