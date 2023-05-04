@@ -3,7 +3,6 @@ import { getDocs, deleteDoc, doc, query, orderBy, updateDoc, Timestamp,} from 'f
 import { meetingsCollectionRef } from "../util/firebase-config";
 import { db } from "../util/firebase-config";
 import { openModal } from "./modalSlice";
-import { resetForm } from "./bookingFormSlice";
 
 const initialState = {
     userMeetingsList: [],
@@ -40,7 +39,6 @@ export const updateMeeting = createAsyncThunk("firestore/updateMeeting", async (
     
     await updateDoc(doc(db, "meetings", editForm.meetingSelectedForEdit), newFields)
     dispatch(openModal())
-    dispatch(resetForm())
 })
 
 export const deleteMeeting = createAsyncThunk("firestore/deleteMeeting", async (id) =>{
