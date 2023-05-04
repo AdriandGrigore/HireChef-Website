@@ -17,7 +17,7 @@ function MeetingList() {
     return formattedDate;
   }
 
-  const populateEditForm = (date, chef, menu, phoneNumber)=>{
+  const populateEditForm = (meetingId, date, chef, menu, phoneNumber) => {
     const inputNames = ["date", "chef", "menu", "phoneNumber"]
     const inputValues = [date, chef, menu, phoneNumber]
     inputNames.forEach((name, index) =>{
@@ -25,7 +25,7 @@ function MeetingList() {
       dispatch(inputStatus({inputName: name}))
     })
     dispatch(formValid())
-    dispatch(changeToEditForm())
+    dispatch(changeToEditForm({id:meetingId}))
   }
   
   const loggedInUserMeetings = userMeetingsList
@@ -37,7 +37,7 @@ function MeetingList() {
         <td data-cell="Phone Number">{meeting.phoneNumber}</td>
         <td data-cell="Actions" className='actions-cell'>
           <Link
-            onClick={() => populateEditForm(convertDateFormat(meeting.date), meeting.chef, meeting.menu, meeting.phoneNumber)}
+            onClick={() => populateEditForm(meeting.meetingId, convertDateFormat(meeting.date), meeting.chef, meeting.menu, meeting.phoneNumber)}
             to="/user/booking#">
             Edit
           </Link>

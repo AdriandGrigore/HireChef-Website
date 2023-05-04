@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDocs, deleteDoc, doc, query, orderBy,} from 'firebase/firestore'
+import { getDocs, deleteDoc, doc, query, orderBy, updateDoc, Timestamp,} from 'firebase/firestore'
 import { meetingsCollectionRef } from "../util/firebase-config";
 import { db } from "../util/firebase-config";
+import { openModal } from "./modalSlice";
+import { resetForm } from "./bookingFormSlice";
 
 const initialState = {
     userMeetingsList: [],
@@ -24,6 +26,21 @@ export const fetchMeetings = createAsyncThunk("firestore/fetchMeetings", async (
         .filter(meeting => meeting.userId === loggedInUser.uid)
     
     return data
+})
+
+export const updateMeeting = createAsyncThunk("firestore/updateMeeting", async (_,{getState, dispatch}) => {
+    const bookingFormState = getState().bookingForm
+    const {phoneNumber, menu, chef, date, editForm} = bookingFormState
+    const newFields = {
+        phoneNumber: phoneNumber.value,
+        menu: menu.value,
+        chef: chef.value,
+        date: Timestamp.fromDate(new Date(date.value))
+    }
+    
+    await updateDoc(doc(db, "meetings", editForm.meetingSelectedForEdit), newFields)
+    dispatch(openModal())
+    dispatch(resetForm())
 })
 
 export const deleteMeeting = createAsyncThunk("firestore/deleteMeeting", async (id) =>{
@@ -54,6 +71,9 @@ const meetingSlice = createSlice({
         })
         builder.addCase(deleteMeeting.rejected, (state) =>{
             state.deleteMeetingError = true
+        })
+        builder.addCase(updateMeeting.rejected, () =>{
+            alert("Something went wrong in updating your meeting. Please try again")
         })
     }
 })

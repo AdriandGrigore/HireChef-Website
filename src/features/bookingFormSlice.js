@@ -21,7 +21,10 @@ const initialState = {
     wasClicked: false,
     errorMsg:"Select a date"
   },
-  editFormStatus: false,
+  editForm:{
+    status: false, 
+    meetingSelectedForEdit: ""
+  },
   submitBtnIsDisabled: true
 }
 
@@ -41,8 +44,9 @@ const bookingFormSlice= createSlice({
     formNotValid:(state)=>{
       state.submitBtnIsDisabled= true
     },
-    changeToEditForm: (state)=>{
-      state.editFormStatus = true
+    changeToEditForm: (state, {payload})=>{
+      state.editForm.status = true
+      state.editForm.meetingSelectedForEdit = payload.id
     },
     resetForm:()=>{
       return initialState

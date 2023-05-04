@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { formNotValid, formValid, inputChange, inputStatus, resetForm } from '../../features/bookingFormSlice'
 import {openModal} from "../../features/modalSlice"
 import { meetingsCollectionRef } from '../../util/firebase-config'
-import { fetchMeetings } from '../../features/meetingSlice'
+import { fetchMeetings, updateMeeting } from '../../features/meetingSlice'
 import "../BookingForm/BookingForm.css"
 
 const getCurrentDate=()=>{
@@ -23,7 +23,7 @@ const getCurrentDate=()=>{
 
 function BookingForm() {
     const {loggedInUser} = useAuth()
-    const {phoneNumber, menu, chef, date,submitBtnIsDisabled, editFormStatus} = useSelector((state)=>state.bookingForm)
+    const {phoneNumber, menu, chef, date,submitBtnIsDisabled, editForm} = useSelector((state)=>state.bookingForm)
     const dispatch = useDispatch()
     
     const errCondition ={
@@ -69,12 +69,17 @@ function BookingForm() {
         dispatch(resetForm())
     }
 
+    const sendUpdatedMeetingToDb = (e) =>{
+        e.preventDefault()
+        dispatch(updateMeeting())
+    }
+
     return (
         <section className='booking-section'>
             <UserSidebar />
             <UserOverview />
-            <form className='booking-form' onSubmit={sendMeetingToDb} autoComplete='off'>
-                <h1>{editFormStatus ? "Update Meeting" : "Book a meeting"}</h1>
+            <form className='booking-form' onSubmit={editForm.status ? sendUpdatedMeetingToDb : sendMeetingToDb} autoComplete='off'>
+                <h1>{editForm.status ? "Update Meeting" : "Book a meeting"}</h1>
                 <div>
                     <label htmlFor='phoneNumber'>Phone Number: <sup>*</sup></label>
                     <input 
@@ -127,7 +132,7 @@ function BookingForm() {
                     type="submit"
                     className={submitBtnIsDisabled ? "submit-button disabled" : "submit-button"}
                     disabled={submitBtnIsDisabled}>
-                    {editFormStatus ? "UPDATE" : "SUBMIT"}
+                    {editForm.status ? "UPDATE" : "SUBMIT"}
                 </button>
             </form>
         </section>
