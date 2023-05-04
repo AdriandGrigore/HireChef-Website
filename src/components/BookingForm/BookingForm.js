@@ -61,12 +61,12 @@ function BookingForm() {
         try{ 
             await addDoc(meetingsCollectionRef, {...new Meeting(loggedInUser.uid, phoneNumber.value, menu.value, chef.value, Timestamp.fromDate(new Date(date.value)))})
             dispatch(openModal())
+            dispatch(fetchMeetings(loggedInUser))
         }
         catch{
             alert("Something went wrong, please try again")
         }
         dispatch(resetForm())
-        dispatch(fetchMeetings(loggedInUser))
     }
 
     return (
