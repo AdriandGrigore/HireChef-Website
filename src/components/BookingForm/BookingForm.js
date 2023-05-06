@@ -5,7 +5,7 @@ import useAuth from "../../custom-hooks/useAuth"
 import { Timestamp, addDoc } from 'firebase/firestore'
 import Meeting from "../../models/Meeting"
 import { useDispatch, useSelector } from 'react-redux'
-import { formNotValid, formValid, inputChange, inputStatus, resetForm } from '../../features/bookingFormSlice'
+import { formNotValid, formValid, inputChange, inputStatus } from '../../features/bookingFormSlice'
 import {openModal} from "../../features/modalSlice"
 import { meetingsCollectionRef } from '../../util/firebase-config'
 import { fetchMeetings, updateMeeting } from '../../features/meetingSlice'
@@ -66,7 +66,6 @@ function BookingForm() {
         catch{
             alert("Something went wrong, please try again")
         }
-        dispatch(resetForm())
     }
 
     const sendUpdatedMeetingToDb = (e) =>{
