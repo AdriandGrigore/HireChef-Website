@@ -3,18 +3,22 @@ import chef1 from "../../assets/chef1.jpg"
 import chef2 from "../../assets/chef2.jpg"
 import chef3 from "../../assets/chef3.jpg"
 import {AiFillStar} from "react-icons/ai"
-import { useDispatch } from 'react-redux'
-import { inputChange, inputStatus } from '../../features/bookingFormSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { inputChange, inputStatus, resetForm } from '../../features/bookingFormSlice'
 import { NavHashLink as Link } from 'react-router-hash-link'
 import useAuth from "../../custom-hooks/useAuth"
 import "../ChefList/ChefList.css"
 
 
 function ChefList() {
+    const {editForm} = useSelector(state => state.bookingForm)
     const dispatch = useDispatch()
     const {loggedInUser} = useAuth()
 
     const handleClick=(e)=>{
+        if(editForm.status){
+            dispatch(resetForm())
+        }
         dispatch(inputChange({inputName:"chef", value:e.target.name}))
         dispatch(inputStatus({inputName:"chef"}))
     }
