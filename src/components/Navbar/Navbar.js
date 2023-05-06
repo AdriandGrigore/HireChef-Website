@@ -6,13 +6,17 @@ import {AiOutlineClose,AiOutlineLogin} from "react-icons/ai"
 import {MdOutlineRestaurantMenu} from "react-icons/md"
 import { NavHashLink as Link } from 'react-router-hash-link'
 import useAuth from '../../custom-hooks/useAuth'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetForm } from '../../features/bookingFormSlice'
 import "../Navbar/Navbar.css"
 
 function Navbar() {
   const [hamburgerMenu, setHamburgerMenu]=useState(false)
   const [scrollPosition,setScrollPosition]=useState({position:0, prevPosition:0})
+  const {editForm} = useSelector(state => state.bookingForm) 
   const isNavbarVisible = scrollPosition.position<=scrollPosition.prevPosition
   const {loggedInUser} = useAuth()
+  const dispatch = useDispatch()
   
   useEffect(() => {
     const onScroll = () => {
@@ -28,6 +32,13 @@ function Navbar() {
 
   const closeHamburgerMenu = () =>{
     setHamburgerMenu(false)
+  }
+  
+  const closeHamburgerMenuAndEditForm = () => {
+    setHamburgerMenu(false)
+    if(editForm.status){
+      dispatch(resetForm())
+    }
   }
 
   return (
@@ -49,7 +60,7 @@ function Navbar() {
           <Link onClick={closeHamburgerMenu} to="/menu#"><MdOutlineRestaurantMenu/> Menu</Link>
         </li>
         <li>
-          <Link onClick={closeHamburgerMenu} to={loggedInUser ? "/user/booking#" : "/login#"}><CiBookmark/>Book meeting</Link>
+          <Link onClick={closeHamburgerMenuAndEditForm} to={loggedInUser ? "/user/booking#" : "/login#"}><CiBookmark/>Book meeting</Link>
         </li>
         <li>
           {
