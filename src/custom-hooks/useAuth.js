@@ -13,8 +13,8 @@ function useAuth() {
             else{
                 setLoggedInUser(null)
             }
-        })
-    })
+        })     
+    },[])
 
     return {
         loggedInUser
