@@ -11,9 +11,9 @@ import { meetingsCollectionRef } from '../../util/firebase-config'
 import { fetchMeetings, updateMeeting } from '../../features/meetingSlice'
 import "../BookingForm/BookingForm.css"
 
-const getCurrentDate=()=>{
+const getTomorrowDate=()=>{
     const date= new Date()
-    const day= date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
+    const day= date.getDate() < 10 ? `0${date.getDate()+1}` : date.getDate()+1
     const month= date.getMonth() < 10 ? `0${date.getMonth()+1}` : date.getMonth()+1
     const year= date.getFullYear()
     return (
@@ -119,7 +119,7 @@ function BookingForm() {
                     <input 
                         type="date" 
                         id="date"
-                        min={getCurrentDate()}
+                        min={getTomorrowDate()}
                         value={date.value}
                         onChange={handleChange}
                         onFocus={handleStatus}
