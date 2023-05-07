@@ -7,15 +7,15 @@ import { NavHashLink as Link } from 'react-router-hash-link'
 import { changeToEditForm, formValid, inputChange, inputStatus} from '../../features/bookingFormSlice'
 import "../MeetingList/MeetingList.css"
 
+export const convertDateFormat = (dateString) => {
+  var parts = dateString.split("/");
+  var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
+  return formattedDate;
+}
+
 function MeetingList() {
   const {userMeetingsList, userMeetingsLoading, deleteMeetingError, userMeetingsError} = useSelector(state => state.meetings)
   const dispatch = useDispatch()
-  
-  const convertDateFormat = (dateString) => {
-    var parts = dateString.split("/");
-    var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
-    return formattedDate;
-  }
 
   const populateEditForm = (meetingId, date, chef, menu, phoneNumber) => {
     const inputNames = ["date", "chef", "menu", "phoneNumber"]
@@ -36,11 +36,16 @@ function MeetingList() {
         <td data-cell="Menu">{meeting.menu}</td>
         <td data-cell="Phone Number">{meeting.phoneNumber}</td>
         <td data-cell="Actions" className='actions-cell'>
-          <Link
-            onClick={() => populateEditForm(meeting.meetingId, convertDateFormat(meeting.date), meeting.chef, meeting.menu, meeting.phoneNumber)}
-            to="/user/booking#">
-            Edit
-          </Link>
+          { 
+            new Date(convertDateFormat(meeting.date)) < new Date() ? // if meeting date is less than current date, edit button will be replaced by rate button
+            <Link className="rate-link"> Rate </Link> : 
+            <Link
+              className="edit-link"
+              onClick={() => populateEditForm(meeting.meetingId, convertDateFormat(meeting.date), meeting.chef, meeting.menu, meeting.phoneNumber)}
+              to="/user/booking#">
+              Edit
+            </Link>
+          }
           <button onClick={()=>dispatch(deleteMeeting(meeting.meetingId))}>Delete</button>
         </td>
       </tr>

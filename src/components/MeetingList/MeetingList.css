@@ -72,20 +72,37 @@
   cursor: pointer;
 }
 
-.actions-cell a{
+.edit-link{
   padding: 0.6rem 1.1rem;
+  margin-right: 0.5rem;
   font-size: 0.85rem;
   font-weight: bold;
   border: 1px solid rgba(128, 128, 128, 0.747);
   border-radius: 5px;
   text-decoration: none;
   color: rgb(0, 0, 255);
-  margin-right: 0.5rem;
 }
 
-.actions-cell a:hover {
+.edit-link:hover {
   background-color: rgba(0, 0, 255, 0.733);
   color: white;
+  transition: 0.2s ease-in-out;
+}
+
+.rate-link {
+  padding: 0.6rem 0.86rem;
+  margin-right: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border: 1px solid rgba(128, 128, 128, 0.747);
+  border-radius: 5px;
+  text-decoration: none;
+  color: rgb(119, 87, 0);
+}
+
+.rate-link:hover {
+  color:white;
+  background-color: rgba(119, 87, 0, 0.747);
   transition: 0.2s ease-in-out;
 }
 
@@ -145,7 +162,7 @@
     font-size: 0.9rem;
   }
   
-  .actions-cell a{
+  .edit-link, .rate-link{
     padding: 0.8rem 1.5rem;
     font-size: 0.9rem;
   }
