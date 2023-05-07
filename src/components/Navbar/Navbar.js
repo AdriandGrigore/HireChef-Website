@@ -60,7 +60,7 @@ function Navbar() {
           <Link onClick={closeHamburgerMenu} to="/menu#"><MdOutlineRestaurantMenu/> Menu</Link>
         </li>
         <li>
-          <Link onClick={closeHamburgerMenuAndEditForm} to={loggedInUser ? "/user/booking#" : "/login#"}><CiBookmark/>Book meeting</Link>
+          <Link onClick={closeHamburgerMenuAndEditForm} to="/user/booking#"><CiBookmark/>Book meeting</Link>
         </li>
         <li>
           {
