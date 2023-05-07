@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMeetings } from '../../features/meetingSlice'
 import useAuth from '../../custom-hooks/useAuth'
+import { convertDateFormat } from '../MeetingList/MeetingList'
 import "../UserOverview/UserOverview.css"
 
 function UserOverview() {
   const {userMeetingsList} = useSelector(state=>state.meetings)
-  const upcomingMeeting = userMeetingsList.length > 0 ? userMeetingsList[0].date : "-"
+  const filteredMeetingDates = userMeetingsList.filter(meeting => new Date(convertDateFormat(meeting.date)) > new Date())
+  const upcomingMeeting = filteredMeetingDates.length > 0 ? filteredMeetingDates[0].date : "-"
   const {loggedInUser} = useAuth()
   const dispatch = useDispatch()
 
