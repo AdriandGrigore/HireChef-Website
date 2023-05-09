@@ -9,8 +9,8 @@ function UserBooking() {
   const {isModalOpen} = useSelector(state=>state.modal)
   return (
     <>
-      <Navbar />
       {isModalOpen ? <Modal /> : null}
+      <Navbar />
       <BookingForm />
       <Footer />
     </>
