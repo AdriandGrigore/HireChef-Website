@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteMeeting } from '../../features/meetingSlice'
 import { NavHashLink as Link } from 'react-router-hash-link'
 import { changeToEditForm, formValid, inputChange, inputStatus} from '../../features/bookingFormSlice'
+import { openRatingModal } from '../../features/ratingModalSlice'
 import "../MeetingList/MeetingList.css"
 
 export const convertDateFormat = (dateString) => {
@@ -37,8 +38,14 @@ function MeetingList() {
         <td data-cell="Phone Number">{meeting.phoneNumber}</td>
         <td data-cell="Actions" className='actions-cell'>
           { 
-            new Date(convertDateFormat(meeting.date)) < new Date() ? // if meeting date is less than current date, edit button will be replaced by rate button
-            <Link className="rate-link"> Rate </Link> : 
+          new Date(convertDateFormat(meeting.date)) < new Date() ? // if meeting date is less than current date, edit button will be replaced by rate button
+            <Link
+              className="rate-link"
+              onClick={() => dispatch(openRatingModal())}
+            >
+              Rate
+            </Link> 
+            :
             <Link
               className="edit-link"
               onClick={() => populateEditForm(meeting.meetingId, convertDateFormat(meeting.date), meeting.chef, meeting.menu, meeting.phoneNumber)}
