@@ -48,14 +48,22 @@ function RatingModal() {
             </div>
             <textarea
                 value={comment}
-                onChange={(e)=>setComment(e.target.value)} 
+                onChange={(e) => setComment(e.target.value)} 
                 cols="28" 
                 rows="4" 
                 placeholder='How was your experience?'
             />
             <div className='rating-modal-buttons'>
-                <Link onClick={sendRatingToDb}> Rate </Link>
-                <button onClick={() => dispatch(closeRatingModal())}>Go back to page</button>
+                <button 
+                    className="send-rating-button" 
+                    onClick={sendRatingToDb}>
+                    Send 
+                </button>
+                <button 
+                    className="go-back-to-page" 
+                    onClick={() => dispatch(closeRatingModal())}>
+                    Go back to page
+                </button>
             </div>
         </div>
     </div>

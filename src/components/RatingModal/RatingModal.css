@@ -77,23 +77,26 @@ textarea::placeholder{
     margin-top: 0.5rem;
 }
 
-.rating-modal-buttons a{
+.send-rating-button{
     width: fit-content;
     padding: 0.6rem 2rem;
+    font-size: 0.95rem;
     letter-spacing: 1.5px;
-    text-decoration: none;
     font-weight: bold;
     color: white;
     background-color: rgb(60, 87, 116);
+    border: none;
     border-radius: 10px;
+    outline: none;
+    cursor: pointer;
     transition: 0.2s ease-in-out;
 }
 
-.rating-modal-buttons a:hover {
+.send-rating-button:hover {
     background-color: rgb(93, 142, 163);
 }
 
-.rating-modal-buttons button{
+.go-back-to-page{
     width: 200px;
     padding: 5px;
     margin-top: 0.8rem;
@@ -133,7 +136,7 @@ textarea::placeholder{
         margin-top: 0.8rem;
     }
 
-    .rating-modal-buttons button{
+    .go-back-to-page{
         margin-bottom: 0.8rem;
         margin-top: 0.8rem;
     }   
