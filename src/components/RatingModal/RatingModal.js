@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {AiFillStar} from "react-icons/ai"
-import { NavHashLink as Link } from 'react-router-hash-link'
 import { closeRatingModal } from '../../features/ratingModalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Rating from '../../models/Rating';
