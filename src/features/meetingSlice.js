@@ -2,13 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getDocs, deleteDoc, doc, query, orderBy, updateDoc, Timestamp,} from 'firebase/firestore'
 import { meetingsCollectionRef } from "../util/firebase-config";
 import { db } from "../util/firebase-config";
-import { openModal } from "./modalSlice";
+import { closeModal, openModal } from "./modalSlice";
 
 const initialState = {
     userMeetingsList: [],
     userMeetingsLoading: false,
     userMeetingsError: false,
     deleteMeetingError: false,
+    meetingSelectedForDelete: "",
 }
 
 export const fetchMeetings = createAsyncThunk("firestore/fetchMeetings", async (loggedInUser) =>{
@@ -41,16 +42,24 @@ export const updateMeeting = createAsyncThunk("firestore/updateMeeting", async (
     dispatch(openModal())
 })
 
-export const deleteMeeting = createAsyncThunk("firestore/deleteMeeting", async (id) =>{
-    await deleteDoc(doc(db, "meetings", id))
+export const deleteMeeting = createAsyncThunk("firestore/deleteMeeting", async (_, {getState, dispatch}) =>{
+    const meetingState = getState().meetings
+    const selectedMeetingID = meetingState.meetingSelectedForDelete
 
-    return id
+    await deleteDoc(doc(db, "meetings", selectedMeetingID))
+    dispatch(closeModal())
+
+    return selectedMeetingID
 })
 
 const meetingSlice = createSlice({
     name: "meetingSlice",
     initialState,
-    reducers:{},
+    reducers:{
+        setDeleteMeetingId: (state, {payload}) =>{
+            state.meetingSelectedForDelete = payload
+        } 
+    },
     extraReducers: (builder)=>{
         builder.addCase(fetchMeetings.pending, (state) =>{
             state.userMeetingsLoading= true;
@@ -77,3 +86,4 @@ const meetingSlice = createSlice({
 })
 
 export default meetingSlice.reducer
+export const {setDeleteMeetingId} = meetingSlice.actions
