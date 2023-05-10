@@ -3,16 +3,17 @@ import Navbar from "../components/Navbar/Navbar"
 import Footer from "../components/Footer/Footer"
 import MeetingList from "../components/MeetingList/MeetingList"
 import RatingModal from '../components/RatingModal/RatingModal'
+import Modal from '../components/Modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import {FiDelete} from "react-icons/fi"
-import Modal from '../components/Modal/Modal'
+import {RiChatSmileLine} from "react-icons/ri"
 import { Link } from 'react-router-dom'
 import { deleteMeeting } from '../features/meetingSlice'
-import { closeDeleteModal } from '../features/modalSlice'
+import { closeDeleteModal, closeModal } from '../features/modalSlice'
 
 function UserMeetings() {
   const {isRatingModalOpen} = useSelector(state => state.ratingModal)
-  const {isDeleteModalOpen} = useSelector(state => state.modal)
+  const {isDeleteModalOpen, isModalOpen} = useSelector(state => state.modal)
   const dispatch = useDispatch()
 
   return (
@@ -36,7 +37,36 @@ function UserMeetings() {
         : 
         null 
       }
+
+      {isModalOpen ? 
+        <Modal 
+          icon={<RiChatSmileLine style={{color:"rgb(31, 156, 31)"}}/>}
+          text={
+            <>
+              <h1>Thank you for sending your feedback!</h1>
+              <h3>Press the button below to see your ratings</h3>
+            </>
+          }
+          buttons={
+            <>
+              <Link 
+                onClick={() => dispatch(closeModal())} 
+                to="/user/ratings#"> 
+                Ratings 
+              </Link>
+              <button 
+                onClick={() => dispatch(closeModal())}> 
+                Go back to page
+              </button>
+            </>
+          }
+        />
+        :
+        null
+      }
+      
       {isRatingModalOpen ? <RatingModal/> : null}
+      
       <Navbar/>
       <MeetingList/>
       <Footer/>
