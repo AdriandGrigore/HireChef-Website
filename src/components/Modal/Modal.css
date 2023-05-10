@@ -79,6 +79,16 @@
     cursor: pointer;
 }
 
+.modal-buttons .delete-link{
+    color: white;
+    background-color: rgb(216, 0, 0);
+    transition: 0.2s ease-in-out
+}
+
+.modal-buttons .delete-link:hover{
+    background-color: rgba(255, 0, 0, 0.63);
+}
+
 @keyframes modal-animation{
     0%{
         transform: translateY(-10%);
