@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getDocs, deleteDoc, doc, query, orderBy, updateDoc, Timestamp,} from 'firebase/firestore'
 import { meetingsCollectionRef } from "../util/firebase-config";
 import { db } from "../util/firebase-config";
-import { closeModal, openModal } from "./modalSlice";
+import { closeDeleteModal, openModal } from "./modalSlice";
 
 const initialState = {
     userMeetingsList: [],
@@ -47,7 +47,7 @@ export const deleteMeeting = createAsyncThunk("firestore/deleteMeeting", async (
     const selectedMeetingID = meetingState.meetingSelectedForDelete
 
     await deleteDoc(doc(db, "meetings", selectedMeetingID))
-    dispatch(closeModal())
+    dispatch(closeDeleteModal())
 
     return selectedMeetingID
 })

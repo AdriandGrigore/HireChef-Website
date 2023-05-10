@@ -8,16 +8,16 @@ import {FiDelete} from "react-icons/fi"
 import Modal from '../components/Modal/Modal'
 import { Link } from 'react-router-dom'
 import { deleteMeeting } from '../features/meetingSlice'
-import { closeModal } from '../features/modalSlice'
+import { closeDeleteModal } from '../features/modalSlice'
 
 function UserMeetings() {
   const {isRatingModalOpen} = useSelector(state => state.ratingModal)
-  const {isModalOpen} = useSelector(state => state.modal)
+  const {isDeleteModalOpen} = useSelector(state => state.modal)
   const dispatch = useDispatch()
 
   return (
     <>
-      {isModalOpen ? 
+      {isDeleteModalOpen ? 
         <Modal 
           icon={<FiDelete style={{color:"red"}}/>}  
           text={     
@@ -29,7 +29,7 @@ function UserMeetings() {
           buttons={
             <>
               <Link className="delete-link" onClick={() => dispatch(deleteMeeting())}> Delete </Link>
-              <button onClick={() => dispatch(closeModal())}> Go back to page</button>
+              <button onClick={() => dispatch(closeDeleteModal())}> Go back to page</button>
             </>
           }
         /> 

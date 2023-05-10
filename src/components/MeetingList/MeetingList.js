@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavHashLink as Link } from 'react-router-hash-link'
 import { changeToEditForm, formValid, inputChange, inputStatus} from '../../features/bookingFormSlice'
 import { openRatingModal } from '../../features/ratingModalSlice'
-import { openModal } from '../../features/modalSlice'
+import { openDeleteModal } from '../../features/modalSlice'
 import { setDeleteMeetingId } from '../../features/meetingSlice'
 import "../MeetingList/MeetingList.css"
 
@@ -31,9 +31,9 @@ function MeetingList() {
     dispatch(changeToEditForm({id:meetingId}))
   }
   
-  const openDeleteModal = (meetingId) =>{
+  const showDeleteModal = (meetingId) =>{
     dispatch(setDeleteMeetingId(meetingId))
-    dispatch(openModal())
+    dispatch(openDeleteModal())
   }
 
   const loggedInUserMeetings = userMeetingsList
@@ -61,7 +61,7 @@ function MeetingList() {
           }
           <button 
             className='delete-button'
-            onClick={()=>openDeleteModal(meeting.meetingId)}>
+            onClick={() => showDeleteModal(meeting.meetingId)}>
             Delete
           </button>
         </td>
