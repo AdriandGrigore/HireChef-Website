@@ -2,10 +2,11 @@ import React from 'react'
 import UserSidebar from "../UserSidebar/UserSidebar"
 import UserOverview from "../UserOverview/UserOverview"
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteMeeting } from '../../features/meetingSlice'
 import { NavHashLink as Link } from 'react-router-hash-link'
 import { changeToEditForm, formValid, inputChange, inputStatus} from '../../features/bookingFormSlice'
 import { openRatingModal } from '../../features/ratingModalSlice'
+import { openModal } from '../../features/modalSlice'
+import { setDeleteMeetingId } from '../../features/meetingSlice'
 import "../MeetingList/MeetingList.css"
 
 export const convertDateFormat = (dateString) => {
@@ -21,6 +22,7 @@ function MeetingList() {
   const populateEditForm = (meetingId, date, chef, menu, phoneNumber) => {
     const inputNames = ["date", "chef", "menu", "phoneNumber"]
     const inputValues = [date, chef, menu, phoneNumber]
+    
     inputNames.forEach((name, index) =>{
       dispatch(inputChange({inputName: name, value: inputValues[index]}))
       dispatch(inputStatus({inputName: name}))
@@ -29,6 +31,11 @@ function MeetingList() {
     dispatch(changeToEditForm({id:meetingId}))
   }
   
+  const openDeleteModal = (meetingId) =>{
+    dispatch(setDeleteMeetingId(meetingId))
+    dispatch(openModal())
+  }
+
   const loggedInUserMeetings = userMeetingsList
     .map(meeting => (
       <tr key ={meeting.meetingId}>
@@ -37,8 +44,7 @@ function MeetingList() {
         <td data-cell="Menu">{meeting.menu}</td>
         <td data-cell="Phone Number">{meeting.phoneNumber}</td>
         <td data-cell="Actions" className='actions-cell'>
-          { 
-          new Date(convertDateFormat(meeting.date)) < new Date() ? // if meeting date is less than current date, edit button will be replaced by rate button
+          { new Date(convertDateFormat(meeting.date)) < new Date() ? // if meeting date is less than current date, edit button will be replaced by rate button
             <Link
               className="rate-link"
               onClick={() => dispatch(openRatingModal())}
@@ -53,7 +59,10 @@ function MeetingList() {
               Edit
             </Link>
           }
-          <button onClick={()=>dispatch(deleteMeeting(meeting.meetingId))}>Delete</button>
+          <button 
+            onClick={()=>openDeleteModal(meeting.meetingId)}>
+            Delete
+          </button>
         </td>
       </tr>
   ))
