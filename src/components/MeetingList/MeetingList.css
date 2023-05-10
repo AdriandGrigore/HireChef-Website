@@ -62,7 +62,7 @@
   width: 230px;
 }
 
-.actions-cell button {
+.delete-button {
   padding: 0.6rem 1.1rem;
   font-size: 0.85rem;
   font-weight: bold;
@@ -89,28 +89,29 @@
   transition: 0.2s ease-in-out;
 }
 
-.rate-link {
-  padding: 0.6rem 0.86rem;
+.rate-button {
+  padding: 0.6rem 0.98rem;
   margin-right: 0.5rem;
   font-size: 0.85rem;
   font-weight: bold;
   border: 1px solid rgba(128, 128, 128, 0.747);
   border-radius: 5px;
-  text-decoration: none;
-  color: rgb(119, 87, 0);
+  color: rgb(95, 95, 56);
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.rate-link:hover {
+.rate-button:hover {
   color:white;
-  background-color: rgba(119, 87, 0, 0.747);
+  background-color: rgba(95, 95, 56, 0.747);
   transition: 0.2s ease-in-out;
 }
 
-.actions-cell button{
+.delete-button{
   color: rgb(216, 0, 0);
 }
 
-.actions-cell button:hover {
+.delete-button:hover {
   background-color: rgba(216, 0, 0, 0.733);
   color: white;
   transition: 0.2s ease-in-out;
@@ -156,13 +157,10 @@
   .actions-cell {
     width: auto;
   }
-
-  .actions-cell button{
-    padding: 0.8rem 1.5rem;
-    font-size: 0.9rem;
-  }
   
-  .edit-link, .rate-link{
+  .edit-link, 
+  .rate-button,
+  .delete-button {
     padding: 0.8rem 1.5rem;
     font-size: 0.9rem;
   }

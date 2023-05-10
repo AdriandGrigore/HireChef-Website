@@ -45,12 +45,12 @@ function MeetingList() {
         <td data-cell="Phone Number">{meeting.phoneNumber}</td>
         <td data-cell="Actions" className='actions-cell'>
           { new Date(convertDateFormat(meeting.date)) < new Date() ? // if meeting date is less than current date, edit button will be replaced by rate button
-            <Link
-              className="rate-link"
+            <button
+              className="rate-button"
               onClick={() => dispatch(openRatingModal())}
             >
               Rate
-            </Link> 
+            </button> 
             :
             <Link
               className="edit-link"
@@ -60,6 +60,7 @@ function MeetingList() {
             </Link>
           }
           <button 
+            className='delete-button'
             onClick={()=>openDeleteModal(meeting.meetingId)}>
             Delete
           </button>
