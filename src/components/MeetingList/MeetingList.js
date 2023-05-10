@@ -47,7 +47,7 @@ function MeetingList() {
           { new Date(convertDateFormat(meeting.date)) < new Date() ? // if meeting date is less than current date, edit button will be replaced by rate button
             <button
               className="rate-button"
-              onClick={() => dispatch(openRatingModal())}
+              onClick={() => dispatch(openRatingModal(meeting.chef))}
             >
               Rate
             </button> 

@@ -2,17 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
     isRatingModalOpen: false,
+    chefSelectedForRating: "",
 }
 
 const ratingModalSlice= createSlice({
     name:"modal",
     initialState,
     reducers:{
-        closeRatingModal:(state)=>{
-            state.isRatingModalOpen= false
+        closeRatingModal:()=>{
+            return initialState
         },
-        openRatingModal:(state)=>{
+        openRatingModal:(state, {payload})=>{
             state.isRatingModalOpen= true
+            state.chefSelectedForRating = payload
         }
     }
 })
