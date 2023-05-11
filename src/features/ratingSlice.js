@@ -4,8 +4,6 @@ import { ratingsCollectionRef } from "../util/firebase-config";
 
 
 const initialState={
-    isRatingModalOpen: false,
-    chefSelectedForRating: "",
     userRatingsList: [],
     userRatingsLoading: false,
     userRatingsError: false,
@@ -29,15 +27,7 @@ export const fetchRatings = createAsyncThunk("firestore/fetchRatings", async (lo
 const ratingSlice= createSlice({
     name:"modal",
     initialState,
-    reducers:{
-        closeRatingModal:()=>{
-            return initialState
-        },
-        openRatingModal:(state, {payload})=>{
-            state.isRatingModalOpen= true
-            state.chefSelectedForRating = payload
-        }
-    },
+    reducers:{},
     extraReducers: (builder) => {
         builder.addCase(fetchRatings.pending, (state) =>{
             state.userRatingsLoading = true
