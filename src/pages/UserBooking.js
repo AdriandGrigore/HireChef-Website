@@ -33,7 +33,11 @@ function UserBooking() {
           buttons={
             <>
               <Link onClick={handleClick} to="/user/meetings#"> Meetings </Link>
-              <button onClick={handleClick}> Go back to page</button>
+              <button 
+                className='go-back-button'
+                onClick={handleClick}> 
+                Go back to page
+              </button>
             </>
           }
         />

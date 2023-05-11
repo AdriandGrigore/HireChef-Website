@@ -28,8 +28,16 @@ function UserMeetings() {
           }
           buttons={
             <>
-              <Link className="delete-link" onClick={() => dispatch(deleteMeeting())}> Delete </Link>
-              <button onClick={() => dispatch(closeDeleteModal())}> Go back to page</button>
+              <button 
+                className="delete-button" 
+                onClick={() => dispatch(deleteMeeting())}> 
+                Delete 
+              </button>
+              <button 
+                className='go-back-button'
+                onClick={() => dispatch(closeDeleteModal())}> 
+                Go back to page
+              </button>
             </>
           }
         /> 
@@ -54,6 +62,7 @@ function UserMeetings() {
                 Ratings 
               </Link>
               <button 
+                className='go-back-button'
                 onClick={() => dispatch(closeConfirmationModal())}> 
                 Go back to page
               </button>

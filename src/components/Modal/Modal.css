@@ -68,7 +68,7 @@
     background-color: rgb(93, 142, 163);
 }
 
-.modal-buttons button{
+.go-back-button{
     width: 200px;
     padding: 5px;
     margin-top: 1rem;
@@ -79,13 +79,21 @@
     cursor: pointer;
 }
 
-.modal-buttons .delete-link{
+.modal-buttons .delete-button{
+    width: fit-content;
+    padding: 0.7rem 1.15rem;
+    letter-spacing: 1.5px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
     color: white;
     background-color: rgba(216, 0, 0, 0.788);
-    transition: 0.2s ease-in-out
+    transition: 0.2s ease-in-out;
+    cursor:pointer
 }
 
-.modal-buttons .delete-link:hover{
+.modal-buttons .delete-button:hover{
     background-color: rgba(255, 0, 0, 0.63);
 }
 
@@ -133,6 +141,10 @@
 
     .modal-text h3{
         width: 90%;
+        font-size: 0.9rem;
+    }
+
+    .modal-buttons .delete-button {
         font-size: 0.9rem;
     }
 }
