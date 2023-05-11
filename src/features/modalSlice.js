@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState={
     isConfirmationModalOpen:false,
     isDeleteModalOpen:false,
+    documentSelectedForDelete: "",
 }
 
 const modalSlice= createSlice({
@@ -17,9 +18,11 @@ const modalSlice= createSlice({
         },
         closeDeleteModal:(state)=>{
             state.isDeleteModalOpen = false
+            state.documentSelectedForDelete = ""
         },
-        openDeleteModal:(state)=>{
+        openDeleteModal:(state, {payload})=>{
             state.isDeleteModalOpen= true
+            state.documentSelectedForDelete = payload
         }
     }
 })

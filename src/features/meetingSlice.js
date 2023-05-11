@@ -9,7 +9,6 @@ const initialState = {
     userMeetingsLoading: false,
     userMeetingsError: false,
     deleteMeetingError: false,
-    meetingSelectedForDelete: "",
 }
 
 export const fetchMeetings = createAsyncThunk("firestore/fetchMeetings", async (loggedInUser) =>{
@@ -43,23 +42,19 @@ export const updateMeeting = createAsyncThunk("firestore/updateMeeting", async (
 })
 
 export const deleteMeeting = createAsyncThunk("firestore/deleteMeeting", async (_, {getState, dispatch}) =>{
-    const meetingState = getState().meetings
-    const selectedMeetingID = meetingState.meetingSelectedForDelete
+    const modalState = getState().modal
+    const selectedDocumentID = modalState.documentSelectedForDelete
 
-    await deleteDoc(doc(db, "meetings", selectedMeetingID))
+    await deleteDoc(doc(db, "meetings", selectedDocumentID))
     dispatch(closeDeleteModal())
 
-    return selectedMeetingID
+    return selectedDocumentID
 })
 
 const meetingSlice = createSlice({
     name: "meetingSlice",
     initialState,
-    reducers:{
-        setDeleteMeetingId: (state, {payload}) =>{
-            state.meetingSelectedForDelete = payload
-        } 
-    },
+    reducers:{},
     extraReducers: (builder)=>{
         builder.addCase(fetchMeetings.pending, (state) =>{
             state.userMeetingsLoading= true;
@@ -86,4 +81,3 @@ const meetingSlice = createSlice({
 })
 
 export default meetingSlice.reducer
-export const {setDeleteMeetingId} = meetingSlice.actions

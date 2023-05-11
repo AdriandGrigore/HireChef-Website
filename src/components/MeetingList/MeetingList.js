@@ -6,7 +6,6 @@ import { NavHashLink as Link } from 'react-router-hash-link'
 import { changeToEditForm, formValid, inputChange, inputStatus} from '../../features/bookingFormSlice'
 import { openRatingModal } from '../../features/ratingSlice'
 import { openDeleteModal } from '../../features/modalSlice'
-import { setDeleteMeetingId } from '../../features/meetingSlice'
 import "../MeetingList/MeetingList.css"
 
 export const convertDateFormat = (dateString) => {
@@ -31,11 +30,6 @@ function MeetingList() {
     dispatch(changeToEditForm({id:meetingId}))
   }
   
-  const showDeleteModal = (meetingId) =>{
-    dispatch(setDeleteMeetingId(meetingId))
-    dispatch(openDeleteModal())
-  }
-
   const loggedInUserMeetings = userMeetingsList
     .map(meeting => (
       <tr key ={meeting.meetingId}>
@@ -61,7 +55,7 @@ function MeetingList() {
           }
           <button 
             className='delete-button'
-            onClick={() => showDeleteModal(meeting.meetingId)}>
+            onClick={() => dispatch(openDeleteModal(meeting.meetingId))}>
             Delete
           </button>
         </td>
