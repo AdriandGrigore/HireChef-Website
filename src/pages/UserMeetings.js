@@ -7,7 +7,7 @@ import Modal from '../components/Modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import {FiDelete} from "react-icons/fi"
 import {RiChatSmileLine} from "react-icons/ri"
-import { Link } from 'react-router-dom'
+import { NavHashLink as Link } from 'react-router-hash-link'
 import { deleteMeeting } from '../features/meetingSlice'
 import { closeDeleteModal, closeConfirmationModal } from '../features/modalSlice'
 
