@@ -66,10 +66,17 @@
   padding: 0.6rem 1.1rem;
   font-size: 0.85rem;
   font-weight: bold;
+  color: rgb(216, 0, 0);
   background-color: transparent;
   border: 1px solid rgba(128, 128, 128, 0.747);
   border-radius: 5px;
   cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: rgba(216, 0, 0, 0.733);
+  color: white;
+  transition: 0.2s ease-in-out;
 }
 
 .edit-link{
@@ -104,16 +111,6 @@
 .rate-button:hover {
   color:white;
   background-color: rgba(95, 95, 56, 0.747);
-  transition: 0.2s ease-in-out;
-}
-
-.delete-button{
-  color: rgb(216, 0, 0);
-}
-
-.delete-button:hover {
-  background-color: rgba(216, 0, 0, 0.733);
-  color: white;
   transition: 0.2s ease-in-out;
 }
 
