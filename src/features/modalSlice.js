@@ -4,6 +4,8 @@ const initialState={
     isConfirmationModalOpen:false,
     isDeleteModalOpen:false,
     documentSelectedForDelete: "",
+    isRatingModalOpen: false,
+    chefSelectedForRating: "",
 }
 
 const modalSlice= createSlice({
@@ -23,9 +25,24 @@ const modalSlice= createSlice({
         openDeleteModal:(state, {payload})=>{
             state.isDeleteModalOpen= true
             state.documentSelectedForDelete = payload
+        },
+        closeRatingModal:(state)=>{
+            state.isRatingModalOpen= false
+            state.chefSelectedForRating = ""
+        },
+        openRatingModal:(state, {payload})=>{
+            state.isRatingModalOpen= true
+            state.chefSelectedForRating = payload
         }
     }
 })
 
 export default modalSlice.reducer
-export const {openConfirmationModal, closeConfirmationModal, closeDeleteModal, openDeleteModal}= modalSlice.actions
+export const { 
+    openConfirmationModal, 
+    closeConfirmationModal, 
+    openDeleteModal, 
+    closeDeleteModal, 
+    openRatingModal, 
+    closeRatingModal 
+} = modalSlice.actions

@@ -12,8 +12,7 @@ import { deleteMeeting } from '../features/meetingSlice'
 import { closeDeleteModal, closeConfirmationModal } from '../features/modalSlice'
 
 function UserMeetings() {
-  const {isRatingModalOpen} = useSelector(state => state.rating)
-  const {isDeleteModalOpen, isConfirmationModalOpen} = useSelector(state => state.modal)
+  const {isDeleteModalOpen, isConfirmationModalOpen, isRatingModalOpen} = useSelector(state => state.modal)
   const dispatch = useDispatch()
 
   return (
@@ -65,7 +64,11 @@ function UserMeetings() {
         null
       }
       
-      {isRatingModalOpen ? <RatingModal/> : null}
+      {isRatingModalOpen ? 
+        <RatingModal/> 
+        : 
+        null
+      }
       
       <Navbar/>
       <MeetingList/>

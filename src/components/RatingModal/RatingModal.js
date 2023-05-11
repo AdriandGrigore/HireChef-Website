@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import {AiFillStar} from "react-icons/ai"
-import { closeRatingModal } from '../../features/ratingSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Rating from '../../models/Rating';
 import { addDoc } from 'firebase/firestore';
 import { ratingsCollectionRef } from '../../util/firebase-config';
 import useAuth from '../../custom-hooks/useAuth';
-import { openConfirmationModal } from '../../features/modalSlice';
+import { openConfirmationModal, closeRatingModal } from '../../features/modalSlice';
 import "../RatingModal/RatingModal.css"
 
 function RatingModal() {
@@ -14,7 +13,7 @@ function RatingModal() {
     const [hover, setHover] = useState(0);
     const [comment, setComment] = useState("")
     const {loggedInUser} = useAuth()
-    const {chefSelectedForRating} = useSelector(state => state.rating)
+    const {chefSelectedForRating} = useSelector(state => state.modal)
     const dispatch = useDispatch()
 
     const sendRatingToDb = async () =>{

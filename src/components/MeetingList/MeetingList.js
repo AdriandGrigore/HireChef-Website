@@ -4,8 +4,7 @@ import UserOverview from "../UserOverview/UserOverview"
 import { useDispatch, useSelector } from 'react-redux'
 import { NavHashLink as Link } from 'react-router-hash-link'
 import { changeToEditForm, formValid, inputChange, inputStatus} from '../../features/bookingFormSlice'
-import { openRatingModal } from '../../features/ratingSlice'
-import { openDeleteModal } from '../../features/modalSlice'
+import { openDeleteModal, openRatingModal } from '../../features/modalSlice'
 import "../MeetingList/MeetingList.css"
 
 export const convertDateFormat = (dateString) => {
