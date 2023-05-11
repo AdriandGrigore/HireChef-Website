@@ -6,7 +6,7 @@ import { Timestamp, addDoc } from 'firebase/firestore'
 import Meeting from "../../models/Meeting"
 import { useDispatch, useSelector } from 'react-redux'
 import { formNotValid, formValid, inputChange, inputStatus } from '../../features/bookingFormSlice'
-import {openModal} from "../../features/modalSlice"
+import {openConfirmationModal} from "../../features/modalSlice"
 import { meetingsCollectionRef } from '../../util/firebase-config'
 import { fetchMeetings, updateMeeting } from '../../features/meetingSlice'
 import "../BookingForm/BookingForm.css"
@@ -60,7 +60,7 @@ function BookingForm() {
         e.preventDefault()
         try{ 
             await addDoc(meetingsCollectionRef, {...new Meeting(loggedInUser.uid, phoneNumber.value, menu.value, chef.value, Timestamp.fromDate(new Date(date.value)))})
-            dispatch(openModal())
+            dispatch(openConfirmationModal())
             dispatch(fetchMeetings(loggedInUser))
         }
         catch{

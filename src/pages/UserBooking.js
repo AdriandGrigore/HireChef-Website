@@ -5,23 +5,23 @@ import Footer from '../components/Footer/Footer'
 import Modal from "../components/Modal/Modal"
 import { BsEnvelopeCheckFill } from "react-icons/bs"
 import { useDispatch, useSelector } from 'react-redux'
-import { closeModal } from '../features/modalSlice'
+import { closeConfirmationModal } from '../features/modalSlice'
 import { resetForm } from '../features/bookingFormSlice'
 import { NavHashLink as Link } from 'react-router-hash-link'
 
 function UserBooking() {
-  const {isModalOpen} = useSelector(state=>state.modal)
+  const {isConfirmationModalOpen} = useSelector(state=>state.modal)
   const {editForm} = useSelector(state => state.bookingForm)
   const dispatch=useDispatch()  
   
   const handleClick = () =>{
-    dispatch(closeModal())
+    dispatch(closeConfirmationModal())
     dispatch(resetForm())
   }
 
   return (
     <>
-      {isModalOpen ? 
+      {isConfirmationModalOpen ? 
         <Modal 
           icon={<BsEnvelopeCheckFill />}
           text={

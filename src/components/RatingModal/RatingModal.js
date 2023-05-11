@@ -6,7 +6,7 @@ import Rating from '../../models/Rating';
 import { addDoc } from 'firebase/firestore';
 import { ratingsCollectionRef } from '../../util/firebase-config';
 import useAuth from '../../custom-hooks/useAuth';
-import { openModal } from '../../features/modalSlice';
+import { openConfirmationModal } from '../../features/modalSlice';
 import "../RatingModal/RatingModal.css"
 
 function RatingModal() {
@@ -21,7 +21,7 @@ function RatingModal() {
         try{
             await addDoc(ratingsCollectionRef, {...new Rating(loggedInUser.uid, chefSelectedForRating, comment, rating)})
             dispatch(closeRatingModal())
-            dispatch(openModal())
+            dispatch(openConfirmationModal())
         }
         catch{
             alert("Something went wrong! Please try again")

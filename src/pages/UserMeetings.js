@@ -9,11 +9,11 @@ import {FiDelete} from "react-icons/fi"
 import {RiChatSmileLine} from "react-icons/ri"
 import { Link } from 'react-router-dom'
 import { deleteMeeting } from '../features/meetingSlice'
-import { closeDeleteModal, closeModal } from '../features/modalSlice'
+import { closeDeleteModal, closeConfirmationModal } from '../features/modalSlice'
 
 function UserMeetings() {
   const {isRatingModalOpen} = useSelector(state => state.ratingModal)
-  const {isDeleteModalOpen, isModalOpen} = useSelector(state => state.modal)
+  const {isDeleteModalOpen, isConfirmationModalOpen} = useSelector(state => state.modal)
   const dispatch = useDispatch()
 
   return (
@@ -38,7 +38,7 @@ function UserMeetings() {
         null 
       }
 
-      {isModalOpen ? 
+      {isConfirmationModalOpen ? 
         <Modal 
           icon={<RiChatSmileLine style={{color:"rgb(31, 156, 31)"}}/>}
           text={
@@ -50,12 +50,12 @@ function UserMeetings() {
           buttons={
             <>
               <Link 
-                onClick={() => dispatch(closeModal())} 
+                onClick={() => dispatch(closeConfirmationModal())} 
                 to="/user/ratings#"> 
                 Ratings 
               </Link>
               <button 
-                onClick={() => dispatch(closeModal())}> 
+                onClick={() => dispatch(closeConfirmationModal())}> 
                 Go back to page
               </button>
             </>
