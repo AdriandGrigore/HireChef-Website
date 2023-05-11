@@ -5,7 +5,7 @@ const initialState={
     chefSelectedForRating: "",
 }
 
-const ratingModalSlice= createSlice({
+const ratingSlice= createSlice({
     name:"modal",
     initialState,
     reducers:{
@@ -19,5 +19,5 @@ const ratingModalSlice= createSlice({
     }
 })
 
-export default ratingModalSlice.reducer
-export const {openRatingModal,closeRatingModal} = ratingModalSlice.actions
+export default ratingSlice.reducer
+export const {openRatingModal,closeRatingModal} = ratingSlice.actions
