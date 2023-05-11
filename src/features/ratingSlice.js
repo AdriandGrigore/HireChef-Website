@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getDocs } from "firebase/firestore";
+import { getDocs, orderBy, query } from "firebase/firestore";
 import { ratingsCollectionRef } from "../util/firebase-config";
 
 
@@ -10,7 +10,7 @@ const initialState={
 }
 
 export const fetchRatings = createAsyncThunk("firestore/fetchRatings", async (loggedInUser) =>{
-    const res = await getDocs(ratingsCollectionRef)
+    const res = await getDocs(query(ratingsCollectionRef, orderBy("rating", "desc")))
     const data = res.docs
         .map(doc => {
             const ratingData = doc.data()
