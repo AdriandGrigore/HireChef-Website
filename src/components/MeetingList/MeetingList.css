@@ -103,14 +103,14 @@
   font-weight: bold;
   border: 1px solid rgba(128, 128, 128, 0.747);
   border-radius: 5px;
-  color: rgb(95, 95, 56);
+  color: rgb(51 133 0);
   background-color: transparent;
   cursor: pointer;
 }
 
 .rate-button:hover {
   color:white;
-  background-color: rgba(95, 95, 56, 0.747);
+  background-color: rgba(51, 133, 0, 0.747);
   transition: 0.2s ease-in-out;
 }
 
