@@ -5,7 +5,6 @@ import { usersCollectionRef } from "../util/firebase-config";
 const initialState = {
     loggedInUserData:[],
     loggedInUserDataLoading: false,
-    loggedInUserDataError: "",
 }
 
 export const fetchUserData = createAsyncThunk("firestore/fetchUserData", async (loggedInUser) =>{
@@ -29,8 +28,8 @@ const userSlice = createSlice({
             state.loggedInUserDataLoading = false
         })
         builder.addCase(fetchUserData.rejected, (state, action) => {
-            state.loggedInUserDataError = action.error.message
             state.loggedInUserDataLoading = false
+            console.log(action.error.message)
         })
     }
 })
