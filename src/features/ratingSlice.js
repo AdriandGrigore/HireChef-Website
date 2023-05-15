@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getDocs, orderBy, query } from "firebase/firestore";
-import { ratingsCollectionRef } from "../util/firebase-config";
+import { deleteDoc, doc, getDocs, orderBy, query } from "firebase/firestore";
+import { db, ratingsCollectionRef } from "../util/firebase-config";
+import { closeDeleteModal } from "./modalSlice";
 
 
 const initialState={
     userRatingsList: [],
     userRatingsLoading: false,
     userRatingsError: false,
+    deleteRatingError: false,
 }
 
 export const fetchRatings = createAsyncThunk("firestore/fetchRatings", async (loggedInUser) =>{
@@ -22,6 +24,16 @@ export const fetchRatings = createAsyncThunk("firestore/fetchRatings", async (lo
         .filter(rating => rating.userId === loggedInUser.uid)
     
     return data
+})
+
+export const deleteRating = createAsyncThunk("firestore/deleteRating", async (_,{getState, dispatch}) =>{
+    const modalState = getState().modal
+    const selectedDocumentID = modalState.documentSelectedForDelete
+
+    await deleteDoc(doc(db, "ratings", selectedDocumentID))
+    dispatch(closeDeleteModal())
+
+    return selectedDocumentID
 })
 
 const ratingSlice= createSlice({
@@ -40,6 +52,12 @@ const ratingSlice= createSlice({
             state.userRatingsLoading= false
             state.userRatingsError = true
             console.log(action.error.message)
+        })
+        builder.addCase(deleteRating.fulfilled, (state, {payload}) =>{
+            state.userRatingsList = state.userRatingsList.filter( rating => rating.ratingId !== payload)
+        })
+        builder.addCase(deleteRating.rejected, (state) =>{
+            state.deleteRatingError= true
         })
     }
 })
