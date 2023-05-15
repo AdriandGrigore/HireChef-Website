@@ -1,0 +1,143 @@
+.ratings-section {
+    min-height: 100vh;
+    width: 100%;
+    padding-bottom: 2rem;
+    background-image: url("../../assets/bookingBackground.jpg");
+    background-size: cover;
+}
+
+.rating-table-wrapper {
+    width: min(100% - 2.5rem, 1250px);
+    margin-inline: auto;
+}
+
+.ratings-table {
+    width: 100%;
+    margin: 4.5rem auto 0rem auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: white;
+}
+
+.ratings-table tr:nth-child(odd) {
+    background-color: rgba(177, 177, 177, 0.185);
+}
+
+.ratings-table th {
+    padding: 1rem 0rem;
+    font-size: 1.15rem;
+    background-color: rgba(37, 43, 48, 0.76);
+    color: white;
+    border: 1px solid black;
+}
+  
+.ratings-table td {
+    padding: 0.65rem 1rem;
+    border: 1px solid black;
+}
+
+.rating-chef-cell {
+    width: 110px;
+}
+
+.rating-comment-cell span{
+    display: block;
+    width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.rating-stars-cell{
+    width: 130px;
+}
+
+.rating-star{
+    font-size: 1.6rem;
+    color: rgb(255, 199, 15);
+}
+
+.rating-actions-cell{
+    width: 100px;
+}
+
+.delete-rating-button {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: rgb(216, 0, 0);
+    background-color: transparent;
+    border: 1px solid rgba(128, 128, 128, 0.747);
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.delete-rating-button:hover {
+    background-color: rgba(216, 0, 0, 0.733);
+    color: white;
+    transition: 0.2s ease-in-out;
+}
+
+.no-ratings-message {
+    margin-top: 5rem;
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 885px) {
+    .rating-table-wrapper {
+        width: min(100% - 5rem, 1450px);
+    }
+  
+    .ratings-table {
+        margin-top: 0rem;
+    }
+
+    .ratings-table th {
+        display: none;
+    }
+  
+    .ratings-table td::before {
+        content: attr(data-cell) ": ";
+        font-weight: bold;
+        padding-right: 0.3rem;
+        padding-bottom: 0.3rem;
+    }
+  
+    .ratings-table td:last-child::before {
+        content: "";
+        padding-right: 0rem;
+        padding-right: 0rem;
+    }   
+  
+    .ratings-table td {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 1.2rem;
+        padding-left: 1.5rem;
+        text-align: start;
+        border: none;
+    }
+    
+    .ratings-table td:last-child{
+        display: block;
+        padding-top: 0.3rem;
+    }
+
+    .rating-chef-cell,
+    .rating-stars-cell{
+        width: auto;
+    }
+
+    .rating-comment-cell span{
+        width: fit-content;
+    }
+
+    .delete-rating-button{
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .rating-table-wrapper {
+      width: min(100%, 1450px);
+    }
+  }
