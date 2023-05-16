@@ -17,7 +17,6 @@ function UserOverview() {
   useEffect(() => {
     //fetching data (meetings) if it hasn't been fetched before
     if(userMeetingsList.length === 0 && !userMeetingsLoading){
-      console.log("meetings fetched")
       dispatch(fetchMeetings(loggedInUser))
     }
   },[dispatch, loggedInUser, userMeetingsList.length, userMeetingsLoading])
@@ -26,7 +25,6 @@ function UserOverview() {
     //fetching data (ratings) if it hasn't been fetched before
     if(userRatingsList.length === 0 && !userRatingsLoading){
       dispatch(fetchRatings(loggedInUser))
-      console.log("fetching ratings")
     }
   }, [dispatch, loggedInUser, userRatingsList.length, userRatingsLoading])
 
