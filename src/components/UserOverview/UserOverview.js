@@ -7,26 +7,20 @@ import { convertDateFormat } from '../MeetingList/MeetingList'
 import "../UserOverview/UserOverview.css"
 
 function UserOverview() {
-  const {userMeetingsList, userMeetingsLoading} = useSelector(state=>state.meetings)
+  const {userMeetingsList} = useSelector(state=>state.meetings)
   const filteredMeetingDates = userMeetingsList.filter(meeting => new Date(convertDateFormat(meeting.date)) > new Date())
   const upcomingMeeting = filteredMeetingDates.length > 0 ? filteredMeetingDates[0].date : "-"
-  const {userRatingsList, userRatingsLoading} = useSelector(state => state.rating)
+  const {userRatingsList} = useSelector(state => state.rating)
   const {loggedInUser} = useAuth()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    //fetching data (meetings) if it hasn't been fetched before
-    if(userMeetingsList.length === 0 && !userMeetingsLoading){
-      dispatch(fetchMeetings(loggedInUser))
-    }
-  },[dispatch, loggedInUser, userMeetingsList.length, userMeetingsLoading])
+    dispatch(fetchMeetings(loggedInUser))
+  },[dispatch, loggedInUser])
 
   useEffect(() => {
-    //fetching data (ratings) if it hasn't been fetched before
-    if(userRatingsList.length === 0 && !userRatingsLoading){
-      dispatch(fetchRatings(loggedInUser))
-    }
-  }, [dispatch, loggedInUser, userRatingsList.length, userRatingsLoading])
+    dispatch(fetchRatings(loggedInUser))
+  }, [dispatch, loggedInUser])
 
   return (
     <div className='ow-card-container'>
