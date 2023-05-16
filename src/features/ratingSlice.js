@@ -63,4 +63,3 @@ const ratingSlice= createSlice({
 })
 
 export default ratingSlice.reducer
-export const {openRatingModal,closeRatingModal} = ratingSlice.actions
