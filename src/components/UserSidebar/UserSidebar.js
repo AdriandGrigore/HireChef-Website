@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import { NavHashLink as Link } from 'react-router-hash-link'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../util/firebase-config'
-import { useNavigate } from 'react-router-dom'
 import {BiDownArrowAlt, BiUpArrowAlt} from "react-icons/bi"
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserData } from '../../features/userSlice'
