@@ -48,11 +48,11 @@ const bookingFormSlice= createSlice({
       state.editForm.status = true
       state.editForm.meetingSelectedForEdit = payload.id
     },
-    resetForm:()=>{
+    resetState:()=>{
       return initialState
     }
   }
 })
 
 export default bookingFormSlice.reducer
-export const { inputChange,inputStatus, formValid, formNotValid, resetForm, changeToEditForm} = bookingFormSlice.actions
+export const { inputChange,inputStatus, formValid, formNotValid, resetState, changeToEditForm} = bookingFormSlice.actions

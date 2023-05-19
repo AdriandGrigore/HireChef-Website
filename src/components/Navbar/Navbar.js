@@ -7,7 +7,7 @@ import {MdOutlineRestaurantMenu} from "react-icons/md"
 import { NavHashLink as Link } from 'react-router-hash-link'
 import useAuth from '../../custom-hooks/useAuth'
 import { useDispatch, useSelector } from 'react-redux'
-import { resetForm } from '../../features/bookingFormSlice'
+import { resetState } from '../../features/bookingFormSlice'
 import "../Navbar/Navbar.css"
 
 function Navbar() {
@@ -37,7 +37,7 @@ function Navbar() {
   const closeHamburgerMenuAndEditForm = () => {
     setHamburgerMenu(false)
     if(editForm.status){
-      dispatch(resetForm())
+      dispatch(resetState())
     }
   }
 

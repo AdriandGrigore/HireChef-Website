@@ -6,7 +6,7 @@ import Modal from "../components/Modal/Modal"
 import { BsEnvelopeCheckFill } from "react-icons/bs"
 import { useDispatch, useSelector } from 'react-redux'
 import { closeConfirmationModal } from '../features/modalSlice'
-import { resetForm } from '../features/bookingFormSlice'
+import { resetState } from '../features/bookingFormSlice'
 import { NavHashLink as Link } from 'react-router-hash-link'
 
 function UserBooking() {
@@ -16,7 +16,7 @@ function UserBooking() {
   
   const handleClick = () =>{
     dispatch(closeConfirmationModal())
-    dispatch(resetForm())
+    dispatch(resetState())
   }
 
   return (

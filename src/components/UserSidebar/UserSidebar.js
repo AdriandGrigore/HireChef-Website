@@ -6,7 +6,7 @@ import {BiDownArrowAlt, BiUpArrowAlt} from "react-icons/bi"
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserData } from '../../features/userSlice'
 import useAuth from "../../custom-hooks/useAuth"
-import { resetForm } from '../../features/bookingFormSlice'
+import { resetState } from '../../features/bookingFormSlice'
 import "../../components/UserSidebar/UserSidebar.css"
 
 function UserSidebar() {
@@ -65,7 +65,7 @@ function UserSidebar() {
                     <Link to="/user/meetings#">Your meetings</Link>
                 </li>
                 <li>
-                    <Link to="/user/booking#" onClick={editForm.status ? () => dispatch(resetForm()) : null}>Book a meeting</Link>
+                    <Link to="/user/booking#" onClick={editForm.status ? () => dispatch(resetState()) : null}>Book a meeting</Link>
                 </li>
                 <li>
                     <Link to="/user/ratings#">Ratings</Link>
