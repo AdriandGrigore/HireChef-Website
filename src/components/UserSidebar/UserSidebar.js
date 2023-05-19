@@ -13,7 +13,6 @@ import "../../components/UserSidebar/UserSidebar.css"
 function UserSidebar() {
     const [logoutError, setLogoutError] = useState("")
     const [openMenu, setOpenMenu] = useState(false)
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     const {loggedInUser} = useAuth()
     const {editForm} = useSelector(state => state.bookingForm)
@@ -23,14 +22,13 @@ function UserSidebar() {
         .map(user => (
             <span className="user-name" key={user.id}>
                 {user.firstName} {user.lastName}
-            </span>
-    ));
+            </span> 
+        )
+    )
 
-  
     const logout = async () =>{
         try{
             await signOut(auth)
-            navigate("/login#")
         }
         catch(err){
             setLogoutError("Something went wrong.Try again")
