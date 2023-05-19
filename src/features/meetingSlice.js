@@ -5,6 +5,7 @@ import { db } from "../util/firebase-config";
 import { closeDeleteModal, openConfirmationModal } from "./modalSlice";
 
 const initialState = {
+    userMeetingsFetchedBefore:false,
     userMeetingsList: [],
     userMeetingsLoading: false,
     userMeetingsError: false,
@@ -61,6 +62,7 @@ const meetingSlice = createSlice({
         })
         builder.addCase(fetchMeetings.fulfilled, (state, action) =>{
             state.userMeetingsLoading = false
+            state.userMeetingsFetchedBefore= true
             state.userMeetingsList = action.payload
         })
         builder.addCase(fetchMeetings.rejected, (state,action) => {

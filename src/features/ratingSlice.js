@@ -5,6 +5,7 @@ import { closeDeleteModal } from "./modalSlice";
 
 
 const initialState={
+    userRatingsFetchedBefore: false,
     userRatingsList: [],
     userRatingsLoading: false,
     userRatingsError: false,
@@ -46,6 +47,7 @@ const ratingSlice= createSlice({
         })
         builder.addCase(fetchRatings.fulfilled, (state, {payload}) =>{
             state.userRatingsLoading= false
+            state.userRatingsFetchedBefore= true
             state.userRatingsList= payload
         })
         builder.addCase(fetchRatings.rejected, (state, action) =>{

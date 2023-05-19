@@ -3,6 +3,7 @@ import { getDocs} from 'firebase/firestore'
 import { usersCollectionRef } from "../util/firebase-config";
 
 const initialState = {
+    userDataFetchedBefore: false,
     loggedInUserData:[],
     loggedInUserDataLoading: false,
     loggedInUserDataError: false,
@@ -26,6 +27,7 @@ const userSlice = createSlice({
         })
         builder.addCase(fetchUserData.fulfilled, (state, action) =>{
             state.loggedInUserDataLoading = false
+            state.userDataFetchedBefore = true
             state.loggedInUserData = action.payload
         })
         builder.addCase(fetchUserData.rejected, (state, action) => {

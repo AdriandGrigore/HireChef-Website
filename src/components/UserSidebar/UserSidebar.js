@@ -15,7 +15,7 @@ function UserSidebar() {
     const dispatch = useDispatch()
     const {loggedInUser} = useAuth()
     const {editForm} = useSelector(state => state.bookingForm)
-    const {loggedInUserData, loggedInUserDataLoading, loggedInUserDataError} = useSelector(state => state.users)
+    const {loggedInUserData, loggedInUserDataLoading, loggedInUserDataError, userDataFetchedBefore} = useSelector(state => state.users)
     
     const loggedInUserFullName = loggedInUserData
         .map(user => (
@@ -39,8 +39,11 @@ function UserSidebar() {
     }
 
     useEffect(() => {
-        dispatch(fetchUserData(loggedInUser))
-    }, [dispatch, loggedInUser])
+        // fetch user data only if it was not fetched before to reduce unnecessary fetching
+        if(!userDataFetchedBefore){
+            dispatch(fetchUserData(loggedInUser))
+        }
+    }, [dispatch, loggedInUser, userDataFetchedBefore])
 
   return (
     <div className='sidebar-container'>
