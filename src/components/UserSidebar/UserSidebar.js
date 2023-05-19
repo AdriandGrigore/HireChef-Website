@@ -17,7 +17,7 @@ function UserSidebar() {
     const dispatch = useDispatch()
     const {loggedInUser} = useAuth()
     const {editForm} = useSelector(state => state.bookingForm)
-    const {loggedInUserData, loggedInUserDataLoading} = useSelector(state => state.users)
+    const {loggedInUserData, loggedInUserDataLoading, loggedInUserDataError} = useSelector(state => state.users)
     
     const loggedInUserFullName = loggedInUserData
         .map(user => (
@@ -52,8 +52,13 @@ function UserSidebar() {
         </button>
         <nav className='sidebar-menu' style={openMenu ? {display:"block"} : {display:"none"}}>
             <h3>
-                <span className='welcome-span'>Welcome,</span> 
-                {loggedInUserDataLoading ? <span className='user-name'>User</span> : loggedInUserFullName}
+                <span className='welcome-span'>Welcome,</span>
+                {loggedInUserDataError ? 
+                    <span className='user-name'>User</span> :
+                    loggedInUserDataLoading ? 
+                    <span className='user-name'>Loading...</span> : 
+                    loggedInUserFullName
+                }
             </h3>
             <ul>
                 <li>
