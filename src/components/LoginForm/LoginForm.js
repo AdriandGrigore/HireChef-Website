@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import "../LoginForm/LoginForm.css"
 
 function LoginForm() {
-  const [loginEmail, setLoginEmail] = useState("")
-  const [loginPassword, setLoginPassword] = useState("")
+  const [loginEmail, setLoginEmail] = useState("demo@user.com")
+  const [loginPassword, setLoginPassword] = useState(`${process.env.REACT_APP_DEMO_USER_PASSWORD}`)
   const [loginError, setLoginError] = useState("")
   const navigate = useNavigate()
 
