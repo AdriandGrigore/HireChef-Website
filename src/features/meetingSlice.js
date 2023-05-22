@@ -3,6 +3,7 @@ import { getDocs, deleteDoc, doc, query, orderBy, updateDoc, Timestamp,} from 'f
 import { meetingsCollectionRef } from "../util/firebase-config";
 import { db } from "../util/firebase-config";
 import { closeDeleteModal, openConfirmationModal } from "./modalSlice";
+import { resetAllStates } from "../actions/resetAllStates";
 
 const initialState = {
     userMeetingsFetchedBefore:false,
@@ -78,6 +79,9 @@ const meetingSlice = createSlice({
         })
         builder.addCase(updateMeeting.rejected, () =>{
             alert("Something went wrong in updating your meeting. Please try again")
+        })
+        builder.addCase(resetAllStates, () => {
+            return initialState
         })
     }
 })

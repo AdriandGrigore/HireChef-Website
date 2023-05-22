@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { resetAllStates } from "../actions/resetAllStates";
 
 const initialState = {
   phoneNumber: {
@@ -51,7 +52,12 @@ const bookingFormSlice= createSlice({
     resetState:()=>{
       return initialState
     }
-  }
+  },
+  extraReducers: ((builder) => {
+    builder.addCase(resetAllStates, () => {
+      return initialState
+    })
+  })
 })
 
 export default bookingFormSlice.reducer

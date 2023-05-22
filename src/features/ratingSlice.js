@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { deleteDoc, doc, getDocs, orderBy, query } from "firebase/firestore";
 import { db, ratingsCollectionRef } from "../util/firebase-config";
 import { closeDeleteModal } from "./modalSlice";
+import { resetAllStates } from "../actions/resetAllStates";
 
 
 const initialState={
@@ -60,6 +61,9 @@ const ratingSlice= createSlice({
         })
         builder.addCase(deleteRating.rejected, (state) =>{
             state.deleteRatingError= true
+        })
+        builder.addCase(resetAllStates, () => {
+            return initialState
         })
     }
 })

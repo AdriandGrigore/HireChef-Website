@@ -8,16 +8,16 @@ function useAuth() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-        if(user) {
-            setLoggedInUser(user)
-        } else {
-            setLoggedInUser(null)
-        }
-        setLoadingUser(false)
+      if(user) {
+        setLoggedInUser(user)
+      } else {
+        setLoggedInUser(null)
+      }
+      setLoadingUser(false)
     });
 
     return () => {
-        unsubscribe()
+      unsubscribe()
     }
 
   }, []);

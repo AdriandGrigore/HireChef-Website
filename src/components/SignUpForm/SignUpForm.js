@@ -34,13 +34,13 @@ function SignUpForm() {
     try{
       setSignUpError("")
       const res = await createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+      navigate("/user/meetings#")
       try{
         await addDoc(usersCollectionRef, {...new User(res.user.uid, firstName, lastName, signupEmail)})
       }
       catch(err){
         setSignUpError(err.message)
       }
-      navigate("/user/meetings#")
     }
     catch(err){
       switch(err.code){
@@ -53,7 +53,7 @@ function SignUpForm() {
         case "auth/missing-password":
           return setSignUpError("Missing password")
         default :
-          return setSignUpError(err.message)
+          return setSignUpError("Something went wrong. Please, try again!")
       }
     }
   }

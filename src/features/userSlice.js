@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getDocs} from 'firebase/firestore'
 import { usersCollectionRef } from "../util/firebase-config";
+import { resetAllStates } from "../actions/resetAllStates"
 
 const initialState = {
     userDataFetchedBefore: false,
@@ -34,6 +35,9 @@ const userSlice = createSlice({
             state.loggedInUserDataLoading = false
             state.loggedInUserDataError = true
             console.log(action.error.message)
+        })
+        builder.addCase(resetAllStates, () => {
+            return initialState
         })
     }
 })
