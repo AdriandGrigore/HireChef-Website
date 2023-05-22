@@ -15,7 +15,7 @@ function Login() {
     if(userDataFetchedBefore || userRatingsFetchedBefore || userMeetingsFetchedBefore){
       dispatch(resetAllStates())
     }
-  }, [dispatch, userDataFetchedBefore])
+  }, [dispatch, userDataFetchedBefore, userRatingsFetchedBefore, userMeetingsFetchedBefore])
   return (
     <>
       <Navbar />
