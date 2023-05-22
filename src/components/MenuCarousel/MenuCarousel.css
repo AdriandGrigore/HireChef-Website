@@ -59,7 +59,6 @@
 @keyframes menu-fade{
     0%{
         opacity: 0.35;   
-        transform: translate(-2%);
     }
     100%{
         opacity: 1;
