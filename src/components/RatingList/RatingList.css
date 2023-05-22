@@ -9,6 +9,8 @@
 .rating-table-wrapper {
     width: min(100% - 2.5rem, 1250px);
     margin-inline: auto;
+    animation: table-wrapper 0.3s ease-in-out ;
+    transform-origin: top;
 }
 
 .ratings-table {
@@ -84,6 +86,7 @@
 @media screen and (max-width: 885px) {
     .rating-table-wrapper {
         width: min(100% - 5rem, 1450px);
+        animation: none;
     }
   
     .ratings-table {
