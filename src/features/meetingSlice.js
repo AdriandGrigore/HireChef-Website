@@ -29,7 +29,7 @@ export const fetchMeetings = createAsyncThunk("firestore/fetchMeetings", async (
     return data
 })
 
-export const updateMeeting = createAsyncThunk("firestore/updateMeeting", async (_,{getState, dispatch}) => {
+export const updateMeeting = createAsyncThunk("firestore/updateMeeting", async (loggedInUser,{getState, dispatch}) => {
     const bookingFormState = getState().bookingForm
     const {phoneNumber, menu, chef, date, editForm} = bookingFormState
     const newFields = {
@@ -40,6 +40,7 @@ export const updateMeeting = createAsyncThunk("firestore/updateMeeting", async (
     }
     
     await updateDoc(doc(db, "meetings", editForm.meetingSelectedForEdit), newFields)
+    dispatch(fetchMeetings(loggedInUser))
     dispatch(openConfirmationModal())
 })
 

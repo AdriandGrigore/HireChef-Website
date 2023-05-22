@@ -70,7 +70,7 @@ function BookingForm() {
 
     const sendUpdatedMeetingToDb = (e) =>{
         e.preventDefault()
-        dispatch(updateMeeting())
+        dispatch(updateMeeting(loggedInUser))
     }
 
     return (
