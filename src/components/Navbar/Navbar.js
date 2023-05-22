@@ -15,7 +15,7 @@ function Navbar() {
   const [scrollPosition,setScrollPosition]=useState({position:0, prevPosition:0})
   const {editForm} = useSelector(state => state.bookingForm) 
   const isNavbarVisible = scrollPosition.position<=scrollPosition.prevPosition
-  const {loggedInUser} = useAuth()
+  const {loggedInUser, loadingUser} = useAuth()
   const dispatch = useDispatch()
   
   useEffect(() => {
@@ -64,7 +64,7 @@ function Navbar() {
         </li>
         <li>
           {
-            loggedInUser ?
+            loggedInUser && !loadingUser ?
             <Link onClick={closeHamburgerMenu} to="/user/meetings#"><CiUser/> Profile </Link> 
             :
             <Link onClick={closeHamburgerMenu} to="/login#"><AiOutlineLogin/> Log in </Link> 
