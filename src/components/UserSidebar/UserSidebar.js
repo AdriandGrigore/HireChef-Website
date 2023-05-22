@@ -62,13 +62,24 @@ function UserSidebar() {
             </h3>
             <ul>
                 <li>
-                    <Link to="/user/meetings#">Your meetings</Link>
+                    <Link to="/user/meetings#" onClick={() => setOpenMenu(false)}>Your meetings</Link>
                 </li>
                 <li>
-                    <Link to="/user/booking#" onClick={editForm.status ? () => dispatch(resetState()) : null}>Book a meeting</Link>
+                    <Link 
+                        to="/user/booking#" 
+                        onClick={editForm.status ? 
+                        () => {
+                            setOpenMenu(false)
+                            dispatch(resetState())
+                        } 
+                        :
+                        () => setOpenMenu(false)}
+                    >
+                        Book a meeting
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/user/ratings#">Ratings</Link>
+                    <Link to="/user/ratings#" onClick={() => setOpenMenu(false)}>Ratings</Link>
                 </li>
                 <button className='log-out-button' onClick={logout}>Log Out</button>
             </ul>
