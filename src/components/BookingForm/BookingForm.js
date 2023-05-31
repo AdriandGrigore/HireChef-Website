@@ -6,44 +6,46 @@ import { Timestamp, addDoc } from 'firebase/firestore'
 import Meeting from "../../models/Meeting"
 import { useDispatch, useSelector } from 'react-redux'
 import { formNotValid, formValid, inputChange, inputStatus } from '../../features/bookingFormSlice'
-import {openConfirmationModal} from "../../features/modalSlice"
+import { openConfirmationModal } from "../../features/modalSlice"
 import { meetingsCollectionRef } from '../../util/firebase-config'
 import { fetchMeetings, updateMeeting } from '../../features/meetingSlice'
 import "../BookingForm/BookingForm.css"
 
-const getTomorrowDate=()=>{
-    const date= new Date()
-    const day= date.getDate() + 1 < 10 ? `0${date.getDate()+1}` : date.getDate()+1
-    const month= date.getMonth() < 10 ? `0${date.getMonth()+1}` : date.getMonth()+1
-    const year= date.getFullYear()
+const getTomorrowDate = () => {
+    const date = new Date()
+    date.setDate(date.getDate() + 1);
+    const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
+    const month = date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
+    const year = date.getFullYear()
+
     return (
-      `${year}-${month}-${day}`
+        `${year}-${month}-${day}`
     )
 }
 
 function BookingForm() {
-    const {loggedInUser} = useAuth()
-    const {phoneNumber, menu, chef, date,submitBtnIsDisabled, editForm} = useSelector((state)=>state.bookingForm)
+    const { loggedInUser } = useAuth()
+    const { phoneNumber, menu, chef, date, submitBtnIsDisabled, editForm } = useSelector((state) => state.bookingForm)
     const dispatch = useDispatch()
-    
-    const errCondition ={
+
+    const errCondition = {
         phoneNumber: phoneNumber.value.length < 10 && phoneNumber.wasClicked,
         menu: menu.value === "none" && menu.wasClicked,
         chef: chef.value === "none" && chef.wasClicked,
         date: date.value === "" && date.wasClicked,
     }
-    
-    const formValidationChecker=()=>{
+
+    const formValidationChecker = () => {
         const allInputsClicked = phoneNumber.wasClicked && menu.wasClicked && chef.wasClicked && date.wasClicked
         const errorIsShowing = errCondition.phoneNumber || errCondition.menu || errCondition.chef || errCondition.date
-        
-        if(errorIsShowing){
+
+        if (errorIsShowing) {
             dispatch(formNotValid())
         }
-        else if(allInputsClicked){
+        else if (allInputsClicked) {
             dispatch(formValid())
         }
-        else{
+        else {
             dispatch(formNotValid())
         }
     }
@@ -51,24 +53,24 @@ function BookingForm() {
     const handleChange = (e) => {
         dispatch(inputChange({ value: e.target.value, inputName: e.target.id }))
     }
-    
+
     const handleStatus = (e) => {
-        dispatch(inputStatus({inputName:e.target.id}))
+        dispatch(inputStatus({ inputName: e.target.id }))
     }
 
-    const sendMeetingToDb = async (e) =>{
+    const sendMeetingToDb = async (e) => {
         e.preventDefault()
-        try{ 
-            await addDoc(meetingsCollectionRef, {...new Meeting(loggedInUser.uid, phoneNumber.value, menu.value, chef.value, Timestamp.fromDate(new Date(date.value)))})
+        try {
+            await addDoc(meetingsCollectionRef, { ...new Meeting(loggedInUser.uid, phoneNumber.value, menu.value, chef.value, Timestamp.fromDate(new Date(date.value))) })
             dispatch(openConfirmationModal())
             dispatch(fetchMeetings(loggedInUser))
         }
-        catch{
+        catch {
             alert("Something went wrong, please try again")
         }
     }
 
-    const sendUpdatedMeetingToDb = (e) =>{
+    const sendUpdatedMeetingToDb = (e) => {
         e.preventDefault()
         dispatch(updateMeeting(loggedInUser))
     }
@@ -81,9 +83,9 @@ function BookingForm() {
                 <h1>{editForm.status ? "Update Meeting" : "Book a meeting"}</h1>
                 <div>
                     <label htmlFor='phoneNumber'>Phone Number: <sup>*</sup></label>
-                    <input 
-                        id="phoneNumber" 
-                        type="tel" 
+                    <input
+                        id="phoneNumber"
+                        type="tel"
                         pattern="[0-9]{10}"
                         placeholder='Phone Number'
                         value={phoneNumber.value}
@@ -101,7 +103,7 @@ function BookingForm() {
                         <option value="No.1">No.1</option>
                         <option value="No.2">No.2</option>
                         <option value="No.3">No.3</option>
-                    </select> 
+                    </select>
                 </div>
                 {errCondition.menu ? <small>{menu.errorMsg}</small> : null}
                 <div>
@@ -111,13 +113,13 @@ function BookingForm() {
                         <option value="Lisa Quinn">Lisa Quinn</option>
                         <option value="Ben Malone">Ben Malone</option>
                         <option value="Liam Pierce">Liam Pierce</option>
-                    </select>    
+                    </select>
                 </div>
                 {errCondition.chef ? <small>{chef.errorMsg}</small> : null}
                 <div>
                     <label htmlFor='date'>Choose a date: <sup>*</sup></label>
-                    <input 
-                        type="date" 
+                    <input
+                        type="date"
                         id="date"
                         min={getTomorrowDate()}
                         value={date.value}
