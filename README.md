@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+## **About** HireChef-Website
+Planning an important event can be frustrating at times. Finding a good chef or the right menu is not an easy task.\
+This project helps users by presenting a list of professional chefs and a selection of fine menus to choose from.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Functionality**
+-Users can create an account or log in with the preset demo user credentials to book a meeting, access their meetings, and view their ratings.\
+-Users can edit or delete their meetings.\
+-They have the option to rate the chef they collaborated with (the rate button will appear only if the meeting date has passed).\
+-On the ratings page, users can view or delete their ratings.\
 
-## Available Scripts
+## **Technology used**
+-ReactJs \
+-Firebase (Hosting, Authentification, Firestore Database) \
+-Redux Toolkit \
+-Npm 
 
-In the project directory, you can run:
+## **Showcase**
+<img src="https://drive.google.com/uc?id=1Bay7oRYqaRSyrKCEPqdIKY0YE3PZXSYA" alt="showcasePicture" />
+</br>
+<img src="https://drive.google.com/uc?id=1NemhDu7SkWe8FahUldwu16LKFLXrPXkp" alt="showcasePicture"/>
+</br>
+<img src="https://drive.google.com/uc?id=188ocNsWQWmQz9XBFutxwrN5JIuL7JM6R" alt="showcasePicture"/>
+</br>
+<img src="https://drive.google.com/uc?id=1cshEFBHtXUAvlplVIwrY4ZeVyL_rpVKv" alt="showcasePicture"/>
+</br>
+<img src="https://drive.google.com/uc?id=1FYX4PeG_CbiB6V9JZGRygTNMaHEiOhHF" alt="showcasePicture"/>
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## **Installation**
+1. clone the repo 
+```
+git clone https://github.com/AdriandGrigore/HireChef-Website.git 
+```
+2. cd into HireChef-Website repo
+```
+cd HireChef-Website
+```
+3. install dependencies
+```
+npm install
+```
+4. run the app
+```
+npm start
+```
